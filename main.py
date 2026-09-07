@@ -23,7 +23,7 @@ class PrototypeHandler(SimpleHTTPRequestHandler):
             self.path = "/index.html"
         elif path == "/favicon.ico":
             self.path = "/favicon.svg"
-        elif path not in {"/index.html", "/styles.css", "/game.js", "/favicon.ico"}:
+        elif path not in {"/index.html", "/styles.css", "/game.js", "/favicon.ico", "/favicon.svg"}:
             self.send_error(404, "Not found")
             return
         return super().do_GET()

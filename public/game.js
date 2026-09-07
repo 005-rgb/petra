@@ -32,6 +32,7 @@
     resultCopy: document.getElementById("result-copy"),
     resultTime: document.getElementById("result-time"),
     resultNearMiss: document.getElementById("result-near-miss"),
+    resultStars: document.getElementById("result-stars"),
     resultReward: document.getElementById("result-reward"),
   };
 
@@ -39,6 +40,7 @@
     routeLength: 960,
     pickupAt: 140,
     timeLimit: 90,
+    targetTime: 75,
     baseSpeed: 14,
     boostSpeed: 21,
     laneSpacing: 2.4,
@@ -96,8 +98,64 @@
     toastText: "",
     shake: 0,
     seed: 1227,
+    telemetry: [],
+    firstLaneChange: false,
+    firstJump: false,
+    firstBoost: false,
+    firstCollision: false,
   };
 
+  function defaultProgress() {
+    return {
+      cash: 0,
+      completedLevels: [],
+      stars: {},
+      bestTimes: {},
+      settings: { audioEnabled: true, vibrationEnabled: false },
+      lastRun: null,
+    };
+  }
+
+  function loadProgress() {
+    const fallback = defaultProgress();
+    try {
+      const parsed = JSON.parse(localStorage.getItem("rushRiderProgress") || "null");
+      if (!parsed || typeof parsed !== "object") return fallback;
+      return {
+        ...fallback,
+        ...parsed,
+        cash: Number.isFinite(Number(parsed.cash)) ? Number(parsed.cash) : 0,
+        completedLevels: Array.isArray(parsed.completedLevels) ? parsed.completedLevels : [],
+        stars: parsed.stars && typeof parsed.stars === "object" ? parsed.stars : {},
+        bestTimes: parsed.bestTimes && typeof parsed.bestTimes === "object" ? parsed.bestTimes : {},
+        settings: { ...fallback.settings, ...(parsed.settings || {}) },
+      };
+    } catch (_) {
+      return fallback;
+    }
+  }
+
+  function saveProgress() {
+    try { localStorage.setItem("rushRiderProgress", JSON.stringify(progress)); } catch (_) { /* storage may be unavailable */ }
+  }
+
+  function trackEvent(name, data = {}) {
+    world.telemetry.push({ name, t: Number(world.elapsed.toFixed(3)), distance: Math.floor(world.distance), ...data });
+    if (world.telemetry.length > 100) world.telemetry.shift();
+  }
+
+  function saveRunTelemetry() {
+    try { localStorage.setItem("rushRiderLastRun", JSON.stringify(world.telemetry)); } catch (_) { /* storage may be unavailable */ }
+  }
+
+  function calculateStars() {
+    if (world.state !== "success") return 0;
+    if (world.elapsed <= CONFIG.targetTime && world.hp === CONFIG.playerHp && world.nearMisses >= 3 && world.shortcutUsed) return 3;
+    if (world.elapsed <= CONFIG.targetTime) return 2;
+    return 1;
+  }
+
+  const progress = loadProgress();
   let viewport = { width: 0, height: 0, dpr: 1 };
   let touchStart = null;
   const audio = {
@@ -105,6 +163,7 @@
     engine: null,
     engineGain: null,
     init() {
+      if (!progress.settings.audioEnabled) return;
       if (this.context) {
         this.context.resume();
         return;
@@ -115,6 +174,7 @@
       this.context.resume();
     },
     start() {
+      if (!progress.settings.audioEnabled) return;
       this.init();
       if (!this.context || this.engine) return;
       this.engine = this.context.createOscillator();
@@ -139,6 +199,7 @@
       this.engine.frequency.setTargetAtTime(target, this.context.currentTime, 0.06);
     },
     cue(kind) {
+      if (!progress.settings.audioEnabled) return;
       this.init();
       if (!this.context) return;
       const recipes = {
@@ -208,6 +269,11 @@
       toastText: "",
       shake: 0,
       seed: 1227,
+      telemetry: [],
+      firstLaneChange: false,
+      firstJump: false,
+      firstBoost: false,
+      firstCollision: false,
     });
     createTraffic();
     createObstacles();
@@ -239,8 +305,13 @@
   }
 
   function beginRun() {
+    if (world.state === "success" || world.state === "fail") {
+      trackEvent("restart");
+      saveRunTelemetry();
+    }
     resetWorld();
     world.state = "running";
+    trackEvent("level_start", { level: "level-01" });
     audio.start();
     audio.cue("start");
     ui.startOverlay.hidden = true;
@@ -255,8 +326,11 @@
   }
 
   function finishRun(success, reason) {
+    if (world.state !== "running") return;
     world.state = success ? "success" : "fail";
     world.boostHeld = false;
+    trackEvent(success ? "delivery_success" : "level_fail", { level: "level-01" });
+    saveRunTelemetry();
     audio.stop();
     audio.cue(success ? "success" : "fail");
     ui.mobileControls.hidden = true;
@@ -272,10 +346,16 @@
       : "Atur napas. Baca jalurnya. Coba lagi.";
     ui.resultTime.textContent = formatTime(world.elapsed);
     ui.resultNearMiss.textContent = String(world.nearMisses);
+    const stars = calculateStars();
+    ui.resultStars.textContent = `${"★".repeat(stars)}${"☆".repeat(3 - stars)}`;
     ui.resultReward.textContent = success ? `Rp${world.reward.toLocaleString("id-ID")}` : "Rp0";
     if (success) {
-      const saved = Number(localStorage.getItem("rushRiderCash") || 0) + world.reward;
-      localStorage.setItem("rushRiderCash", String(saved));
+      progress.cash += world.reward;
+      if (!progress.completedLevels.includes("level-01")) progress.completedLevels.push("level-01");
+      progress.stars["level-01"] = Math.max(Number(progress.stars["level-01"] || 0), stars);
+      const previousBest = Number(progress.bestTimes["level-01"] || Infinity);
+      progress.bestTimes["level-01"] = Math.min(previousBest, Number(world.elapsed.toFixed(3)));
+      saveProgress();
     }
   }
 
@@ -285,19 +365,31 @@
     if (next === world.laneTarget) return;
     world.laneTarget = next;
     world.laneCooldown = CONFIG.laneChangeCooldown;
+    if (!world.firstLaneChange) {
+      world.firstLaneChange = true;
+      trackEvent("first_lane_change");
+    }
   }
 
   function jump() {
     if (world.state === "running" && world.jumpTime <= 0) {
       world.jumpTime = CONFIG.jumpDuration;
+      if (!world.firstJump) {
+        world.firstJump = true;
+        trackEvent("first_jump");
+      }
       audio.cue("jump");
       showToast("JUMP");
     }
   }
 
   function activateBoost() {
-    if (world.state !== "running" || world.boost < 15) return;
+    if (world.state !== "running" || world.boost < 15 || world.boostHeld) return;
     world.boostHeld = true;
+    if (!world.firstBoost) {
+      world.firstBoost = true;
+      trackEvent("first_boost");
+    }
     audio.cue("boost");
   }
 
@@ -327,6 +419,7 @@
 
     if (!world.hasPickedUp && world.distance >= CONFIG.pickupAt) {
       world.hasPickedUp = true;
+      trackEvent("pickup_reached");
       showToast("PICKUP BERHASIL");
       audio.cue("pickup");
       world.reward = 10000;
@@ -336,23 +429,35 @@
       world.distance += 42;
       world.boost = Math.min(100, world.boost + 28);
       world.reward += 500;
+      trackEvent("shortcut_enter");
       audio.cue("boost");
       burstPlayer("#43d4c2", 16);
       showToast("SHORTCUT +Rp500");
     }
 
     updateTraffic(dt, speed);
+    if (world.state !== "running") {
+      updateParticles(dt);
+      updateUI();
+      return;
+    }
     updateObstacles();
+    if (world.state !== "running") {
+      updateParticles(dt);
+      updateUI();
+      return;
+    }
     updateParticles(dt);
 
     if (world.elapsed >= CONFIG.timeLimit) finishRun(false, "Waktu habis.");
-    if (world.distance >= CONFIG.routeLength && world.hasPickedUp) finishRun(true);
+    else if (world.distance >= CONFIG.routeLength && world.hasPickedUp) finishRun(true);
     if (world.toastTimer > 0) world.toastTimer -= dt;
     updateUI();
   }
 
   function updateTraffic(dt, playerSpeed) {
     world.traffic.forEach((car) => {
+      if (world.state !== "running") return;
       car.distance += car.speed * dt;
       if (car.distance < world.distance - 90) {
         car.distance = world.distance + 130 + seededRandom() * 80;
@@ -366,6 +471,7 @@
         car.passed = true;
         if (world.jumpTime > 0) {
           world.nearMisses += 1;
+          trackEvent("near_miss");
           world.combo = Math.min(8, world.combo + 1);
           world.boost = Math.min(100, world.boost + 18);
           world.reward += 100 * world.combo;
@@ -381,12 +487,14 @@
 
   function updateObstacles() {
     world.obstacles.forEach((obstacle) => {
+      if (world.state !== "running") return;
       const relative = obstacle.distance - world.distance;
       const sameLane = Math.abs(obstacle.lane - world.lanePosition) < 0.32;
       if (!obstacle.hit && relative > -1.2 && relative < 1.8 && sameLane) {
         obstacle.hit = true;
         if (world.jumpTime > 0 && obstacle.type === "bump") {
           world.nearMisses += 1;
+          trackEvent("near_miss", { obstacle: obstacle.type });
           world.combo = Math.min(8, world.combo + 1);
           world.reward += 200;
           world.boost = Math.min(100, world.boost + 10);
@@ -405,6 +513,10 @@
     world.combo = 1;
     world.shake = 1;
     world.speedBrake = 0.45;
+    if (!world.firstCollision) {
+      world.firstCollision = true;
+      trackEvent("first_collision", { damage: amount });
+    }
     audio.cue("impact");
     burstPlayer("#ff765f", 10);
     showToast(`${label} -${amount} HP`);

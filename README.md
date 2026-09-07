@@ -5,7 +5,7 @@ Production handoff package for the mobile-first game defined in the attached PRD
 ## Current status
 
 **Phase 0 — Pre-production & Scope Lock: COMPLETED**
-**Phase 1 — Gameplay Prototype: COMPLETED**
+**Phase 1 — Gameplay Prototype: COMPLETED — browser baseline audited**
 
 The complete Phase 0 handoff is in [`docs/phase-0/`](docs/phase-0/). It contains:
 
@@ -42,8 +42,10 @@ Then open the Replit preview. Validate the prototype contract with:
 
 ```bash
 python -m unittest discover -s tests -p 'test_*.py' -v
+python tools/smoke_phase1.py
 ```
 
 The browser prototype is an executable gameplay validation layer while the imported
 repository has no Unity project yet. The Unity implementation can use the same
-locked values and greybox contract from `docs/phase-0/`.
+locked values and greybox contract from `docs/phase-0/`. The audit and improvement
+record is in [`docs/audit/phase-0-1-audit.md`](docs/audit/phase-0-1-audit.md).

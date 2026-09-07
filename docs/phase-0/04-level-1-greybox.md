@@ -23,7 +23,7 @@ Level pertama mengajarkan kontrol tanpa menghilangkan fantasi â€œmengejar orderâ
 | Reward | Rp10.000 virtual currency |
 | Unlock | Basic Helmet |
 | Primary | Deliver order |
-| Secondary | No crash, minimal 1 near miss, finish under 90 s |
+| Secondary | No crash, 3 near miss, use shortcut, finish under 75 s untuk star target |
 | Start state | Arya + City 125, HP 100, boost 0% |
 
 ## Greybox legend
@@ -94,6 +94,14 @@ Prototype wajib mencatat:
 - `level_complete_time`.
 
 Data ini cukup lokal untuk prototype; backend tidak diperlukan.
+
+## Star evaluation
+
+- 1 star: delivery berhasil;
+- 2 stars: selesai maksimal 75 detik;
+- 3 stars: selesai maksimal 75 detik, no crash, minimal 3 near miss, dan shortcut digunakan.
+
+Timer maksimal level tetap 90 detik. Pemain masih dapat menyelesaikan level dengan 1 star sampai timer habis.
 
 ## Greybox exit criteria
 

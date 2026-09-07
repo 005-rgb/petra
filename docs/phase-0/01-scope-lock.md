@@ -33,7 +33,7 @@
 - basic near miss feedback;
 - reward cash virtual;
 - basic HUD;
-- local save minimal;
+- local save minimal: cash, completed level, stars, best time, settings, dan telemetry run terakhir;
 - keyboard/PC input untuk development dan mobile input abstraction untuk device.
 
 ### Prototype acceptance criteria
@@ -50,6 +50,14 @@ Prototype dianggap lolos scope apabila:
 8. build berjalan minimal 30 FPS pada floor device dengan placeholder;
 9. minimal 5 sesi playtest internal menghasilkan catatan tuning;
 10. tidak ada feature non-MVP yang diperlukan untuk menyelesaikan loop.
+
+### Star evaluation Level 1
+
+- **1 star:** delivery berhasil;
+- **2 stars:** delivery berhasil dalam ≤75 detik;
+- **3 stars:** ≤75 detik, HP tetap 100, minimal 3 near miss, dan shortcut digunakan.
+
+Timer level tetap 90 detik. Nilai 75 detik hanya merupakan target untuk star evaluation.
 
 ## Non-goals yang dikunci
 

@@ -37,6 +37,9 @@ class Phase1PrototypeTests(unittest.TestCase):
         (r"function createObstacles", "obstacles"),
         (r"AudioContext", "basic audio"),
         (r"cue\(kind\)", "audio cues"),
+        (r"localStorage", "local persistence"),
+        (r"calculateStars", "star calculation"),
+        (r"trackEvent", "local telemetry"),
     ]:
       require(JS, pattern, label)
 
@@ -49,6 +52,7 @@ class Phase1PrototypeTests(unittest.TestCase):
         (r"laneChangeTime:\s*0\.22", "lane change duration"),
         (r"playerHp:\s*100", "player hp"),
         (r"pickupAt:\s*140", "pickup distance"),
+        (r"targetTime:\s*75", "star target time"),
     ]:
       require(JS, pattern, label)
 

@@ -1,6 +1,6 @@
 # Fase 1 — Gameplay Prototype
 
-**Status: COMPLETED**
+**Status: COMPLETED — browser gameplay baseline audited**
 
 ## What was built
 
@@ -27,7 +27,10 @@ gameplay loop before a Unity project is bootstrapped.
 - reward calculation;
 - delivery success state;
 - deterministic restart;
-- local cash persistence;
+- local progression persistence: cash, completed level, stars, best time, settings, and last-run telemetry;
+- 1/2/3-star result evaluation;
+- local telemetry markers for the greybox contract;
+- basic synthesized audio feedback;
 - keyboard and touch gesture controls;
 - mobile action buttons;
 - responsive HUD and route minimap;
@@ -57,15 +60,19 @@ gameplay loop before a Unity project is bootstrapped.
 
 ```bash
 python -m unittest discover -s tests -p 'test_*.py' -v
+python tools/smoke_phase1.py
 ```
 
 The tests verify the server, required gameplay systems, locked Phase 0 values,
-UI/HUD surfaces, keyboard/touch input, and responsive layout.
+UI/HUD surfaces, keyboard/touch input, responsive layout, persistence, star
+evaluation, telemetry, and audio hooks. The smoke test verifies every public
+asset, the favicon compatibility route, and the expected 404 for unknown routes.
 
 ## Honest implementation boundary
 
 The imported repository did not contain a Unity project, 3D asset pipeline, or
-Android build target. Therefore this phase delivers a working gameplay prototype
-in the existing Python scaffold rather than claiming a Unity/Android build that
-does not exist. The prototype is the playable reference for the later Unity
-implementation.
+Android build target. Therefore this phase delivers a working browser gameplay
+baseline in the existing Python scaffold rather than claiming a Unity/Android
+build that does not exist. The prototype is the playable reference for the later
+Unity implementation. See `docs/audit/phase-0-1-audit.md` for the complete audit
+record and remaining integration gates.

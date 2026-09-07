@@ -22,6 +22,8 @@ Tanggal completion: **7 September 2026**
 | Asset provenance record ditentukan | `06-asset-legal-policy.md` | PASS |
 | Fase 1 memiliki backlog berurutan | `07-phase-1-backlog.md` | PASS |
 | Validator handoff tersedia | `tools/validate_phase0.py` | PASS |
+| Star target dan persistence schema dikunci | `01-scope-lock.md`, `04-level-1-greybox.md` | PASS |
+| Telemetry lokal dan audit record tersedia | `docs/audit/phase-0-1-audit.md` | PASS |
 
 ## Handoff decision
 

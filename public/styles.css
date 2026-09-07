@@ -176,7 +176,7 @@ kbd { display: inline-grid; place-items: center; min-width: 21px; height: 19px; 
 .result-panel { max-width: 420px; text-align: center; margin: 0; }
 .result-icon { display: grid; place-items: center; width: 50px; height: 50px; margin: 0 auto 20px; border: 1px solid var(--teal); border-radius: 50%; color: var(--teal); font-size: 24px; }
 .result-panel h2 { font-size: clamp(45px, 6vw, 68px); }.result-panel > p:not(.kicker) { color: #c3d0c8; font-size: 13px; }
-.result-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin: 26px auto 18px; border: 1px solid var(--line); background: var(--line); }
+.result-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin: 26px auto 18px; border: 1px solid var(--line); background: var(--line); }
 .result-grid div { padding: 12px 6px; background: rgba(7,21,27,.7); }.result-grid small { display: block; color: var(--muted); font-size: 8px; margin-bottom: 5px; }.result-grid strong { font: 700 17px var(--display); color: var(--yellow); }
 .result-panel .primary-button { margin: 0 auto; text-align: left; }
 
