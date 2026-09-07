@@ -8,6 +8,7 @@ namespace RushRider.Bootstrap
 {
     public sealed class PrototypeBootstrap : MonoBehaviour
     {
+        public const string PrototypeSceneName = "Prototype_Level01";
         [SerializeField] private PrototypeConfig config;
 
         private void Awake()

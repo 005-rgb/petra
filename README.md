@@ -68,6 +68,8 @@ The repository now includes the executable foundation for the addendum:
   `python tools/validate_addendum.py` and
   `python tools/validate_addendum.py --strict`;
 - physical capture recorder at `python tools/profile_capture.py`.
+- Android build evidence recorder at `python tools/record_android_build.py`;
+- Unity template preflight at `python tools/check_unity_template.py`.
 
 The strict gate intentionally remains blocked until an approved Unity patch,
 Android toolchain, APK builds, and real floor/target device captures are

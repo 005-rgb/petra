@@ -18,3 +18,9 @@ The exact Unity editor patch, Android SDK/NDK/JDK versions, and Unity-generated
 The scripts are designed to compile with the Input System package and URP. The
 repository validator deliberately reports the missing editor lock and physical
 captures as blockers until those actions are performed on real tooling.
+
+Run the static preflight before opening the template:
+
+```bash
+python tools/check_unity_template.py
+```

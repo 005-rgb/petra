@@ -84,6 +84,7 @@ def validate_registry(result: Validation, budget: dict[str, Any]) -> None:
         "assetId",
         "class",
         "runtimePath",
+        "materialPath",
         "collisionProxyPath",
         "lodPaths",
         "creator",
@@ -107,8 +108,15 @@ def validate_registry(result: Validation, budget: dict[str, Any]) -> None:
         if not re.match(r"^(CHR|VEH|ENV|TRF|OBS|VFX|SFX|UI|MAT|LOC)_[A-Z0-9_]+_v\d{3}$", asset_id):
             result.fail(f"invalid production asset ID: {asset_id}")
         runtime = ROOT / record["runtimePath"]
+        material = ROOT / record["materialPath"]
         collision = ROOT / record["collisionProxyPath"]
         lods = [ROOT / item for item in record["lodPaths"]]
+        if not material.is_file():
+            result.fail(f"{asset_id} missing material: {material.relative_to(ROOT)}")
+        if int(record.get("materialVariantCount", 0)) > 4:
+            result.fail(f"{asset_id} has too many material variants")
+        if not record.get("textureCompression"):
+            result.fail(f"{asset_id} has no texture compression policy")
         for path, label in [(runtime, "runtime"), (collision, "collision"), *[(p, "LOD") for p in lods]]:
             if not path.is_file():
                 result.fail(f"{asset_id} missing {label}: {path.relative_to(ROOT)}")
@@ -218,6 +226,27 @@ def validate_captures(result: Validation, matrix: dict[str, Any]) -> int:
     return valid
 
 
+def validate_build_ladder(result: Validation) -> int:
+    ladder = load_json(CONFIG / "build-ladder.json", result)
+    builds = ladder.get("builds", [])
+    recorded = 0
+    for build in builds:
+        evidence = CAPTURE_ROOT.parent / "builds" / f"{build.get('id')}.json"
+        if evidence.is_file():
+            recorded += 1
+            try:
+                record = json.loads(evidence.read_text(encoding="utf-8"))
+                if record.get("buildId") != build.get("id") or not record.get("sha256"):
+                    result.fail(f"invalid build evidence: {evidence.relative_to(ROOT)}")
+                else:
+                    result.ok(f"Android evidence recorded: {build['id']}")
+            except json.JSONDecodeError:
+                result.fail(f"invalid build evidence JSON: {evidence.relative_to(ROOT)}")
+    if recorded == 0:
+        result.warn("no Android APK build evidence exists yet")
+    return recorded
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--strict", action="store_true", help="fail until all Android evidence gates pass")
@@ -229,6 +258,7 @@ def main() -> int:
     validate_unity_sources(result)
     validate_registry(result, budget)
     capture_count = validate_captures(result, matrix)
+    build_count = validate_build_ladder(result)
 
     for message in result.passes:
         print(f"PASS: {message}")
@@ -241,6 +271,7 @@ def main() -> int:
         return 1
     if args.strict and (
         not capture_count
+        or build_count < 4
         or not json.loads((CONFIG / "project-lock.json").read_text(encoding="utf-8"))["editor"].get("locked")
     ):
         print("FAIL: strict addendum gate is not ready for Vertical Slice")

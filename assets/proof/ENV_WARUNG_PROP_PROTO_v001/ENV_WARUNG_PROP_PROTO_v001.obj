@@ -1,5 +1,7 @@
 # Original low-poly proof asset. No external source or brand.
+mtllib ENV_WARUNG_PROP_PROTO_v001.mtl
 o ENV_WARUNG_PROP_PROTO_v001
+usemtl MAT_WARUNG_TEAL
 v -1.20 0.00 -0.70
 v 1.20 0.00 -0.70
 v 1.20 0.00 0.70

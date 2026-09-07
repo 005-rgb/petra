@@ -21,6 +21,7 @@ class AddendumTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         self.assertIn("repository addendum checks are internally consistent", result.stdout)
         self.assertIn("Unity exact editor patch is not approved", result.stdout)
+        self.assertIn("no Android APK build evidence exists yet", result.stdout)
 
     def test_strict_gate_does_not_claim_missing_hardware_evidence(self):
         result = subprocess.run(
@@ -40,6 +41,17 @@ class AddendumTests(unittest.TestCase):
             self.assertTrue((ROOT / record["collisionProxyPath"]).is_file())
             self.assertTrue(record["sourceReference"])
             self.assertTrue(record["licenseType"])
+            self.assertTrue((ROOT / record["materialPath"]).is_file())
+
+    def test_unity_template_static_gate(self):
+        result = subprocess.run(
+            [sys.executable, "tools/check_unity_template.py"],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+        )
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertIn("packages, sources, input abstraction", result.stdout)
 
 
 if __name__ == "__main__":

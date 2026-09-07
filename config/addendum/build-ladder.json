@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "project": "RUSH RIDER: JAKARTA",
+  "builds": [
+    {
+      "id": "build-00",
+      "contents": "empty scene + input",
+      "purpose": "toolchain proof",
+      "status": "not_generated",
+      "apkEvidence": null
+    },
+    {
+      "id": "build-01",
+      "contents": "player + camera + greybox",
+      "purpose": "control and framing",
+      "status": "not_generated",
+      "apkEvidence": null
+    },
+    {
+      "id": "build-02",
+      "contents": "traffic + collision + timer",
+      "purpose": "core loop",
+      "status": "not_generated",
+      "apkEvidence": null
+    },
+    {
+      "id": "build-03",
+      "contents": "full prototype route",
+      "purpose": "baseline profiling",
+      "status": "not_generated",
+      "apkEvidence": null
+    }
+  ]
+}

@@ -18,9 +18,12 @@ Unity and Android hardware.
 | Deterministic reset | `GameManager`, `PlayerSystem`, `TrafficSystem`, and `MissionSystem` expose reset state | PASS — source present |
 | Debug overlay | `DebugOverlay.cs`, F3 toggle, FPS/object count display | PASS — source present |
 | Asset proof | three original low-poly OBJ proof assets with collision and LOD meshes | PASS — budget/provenance validator |
+| Material/import proof | each proof asset has an original MTL, bounded material variants, and flat-color texture policy | PASS — registry/asset validator |
 | Asset provenance | `config/addendum/asset-registry.json` records source, license, reviewer, and permissions | PASS — schema checked |
 | Device matrix | floor / target / high tiers and scenario list | PASS — config checked |
 | Capture tool | `tools/profile_capture.py` rejects incomplete metrics and records real captures | PASS — executable |
+| Android build evidence | `tools/record_android_build.py` records SHA-256, toolchain versions, install result, and refuses overwrite | PASS — executable; no APK evidence yet |
+| Clean template gate | `tools/check_unity_template.py` checks packages, scenes, source markers, camera, and touch/keyboard abstraction | PASS — static; Unity editor still required |
 | Readiness gate | `tools/validate_addendum.py` separates repo checks from strict evidence | PASS — executable |
 
 ## Explicit blockers
@@ -68,3 +71,13 @@ python tools/smoke_phase1.py
    required metric using `tools/profile_capture.py`.
 7. Only after P0 is closed, approve the proof asset import and proceed to
    vertical-slice content.
+
+## Current queue completion boundary
+
+The build ledger, clean-template verifier, material metadata, and all repository
+checks are implemented. The following two outcomes remain externally blocked
+because this workspace has no Unity editor, Android SDK/ADB, or physical device:
+
+- Build 0–3 cannot be truthfully marked generated/installed.
+- Production-quality Level 1 art cannot be approved from procedural proof meshes;
+  the current assets are complete pipeline proofs, not final campaign art.

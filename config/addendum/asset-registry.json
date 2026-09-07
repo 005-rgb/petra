@@ -7,6 +7,7 @@
       "class": "environment",
       "role": "proof",
       "runtimePath": "assets/proof/ENV_WARUNG_PROP_PROTO_v001/ENV_WARUNG_PROP_PROTO_v001.obj",
+      "materialPath": "assets/proof/ENV_WARUNG_PROP_PROTO_v001/ENV_WARUNG_PROP_PROTO_v001.mtl",
       "collisionProxyPath": "assets/proof/ENV_WARUNG_PROP_PROTO_v001/ENV_WARUNG_PROP_PROTO_v001_collision.obj",
       "lodPaths": [
         "assets/proof/ENV_WARUNG_PROP_PROTO_v001/ENV_WARUNG_PROP_PROTO_v001_lod1.obj"
@@ -19,13 +20,17 @@
       "modificationPermitted": true,
       "dateAcquired": "2026-09-07",
       "reviewer": "Engineering",
-      "androidProfileStatus": "not_captured"
+      "androidProfileStatus": "not_captured",
+      "materialVariantCount": 2,
+      "textureCompression": "flat-color-no-texture",
+      "assetStage": "pipeline_proof"
     },
     {
       "assetId": "VEH_CITY125_PROTO_v001",
       "class": "vehicle",
       "role": "proof",
       "runtimePath": "assets/proof/VEH_CITY125_PROTO_v001/VEH_CITY125_PROTO_v001.obj",
+      "materialPath": "assets/proof/VEH_CITY125_PROTO_v001/VEH_CITY125_PROTO_v001.mtl",
       "collisionProxyPath": "assets/proof/VEH_CITY125_PROTO_v001/VEH_CITY125_PROTO_v001_collision.obj",
       "lodPaths": [
         "assets/proof/VEH_CITY125_PROTO_v001/VEH_CITY125_PROTO_v001_lod1.obj",
@@ -39,13 +44,17 @@
       "modificationPermitted": true,
       "dateAcquired": "2026-09-07",
       "reviewer": "Engineering",
-      "androidProfileStatus": "not_captured"
+      "androidProfileStatus": "not_captured",
+      "materialVariantCount": 2,
+      "textureCompression": "flat-color-no-texture",
+      "assetStage": "pipeline_proof"
     },
     {
       "assetId": "CHR_ARYA_BLOCKOUT_PROTO_v001",
       "class": "character",
       "role": "proof",
       "runtimePath": "assets/proof/CHR_ARYA_BLOCKOUT_PROTO_v001/CHR_ARYA_BLOCKOUT_PROTO_v001.obj",
+      "materialPath": "assets/proof/CHR_ARYA_BLOCKOUT_PROTO_v001/CHR_ARYA_BLOCKOUT_PROTO_v001.mtl",
       "collisionProxyPath": "assets/proof/CHR_ARYA_BLOCKOUT_PROTO_v001/CHR_ARYA_BLOCKOUT_PROTO_v001_collision.obj",
       "lodPaths": [
         "assets/proof/CHR_ARYA_BLOCKOUT_PROTO_v001/CHR_ARYA_BLOCKOUT_PROTO_v001_lod1.obj",
@@ -59,7 +68,10 @@
       "modificationPermitted": true,
       "dateAcquired": "2026-09-07",
       "reviewer": "Engineering",
-      "androidProfileStatus": "not_captured"
+      "androidProfileStatus": "not_captured",
+      "materialVariantCount": 2,
+      "textureCompression": "flat-color-no-texture",
+      "assetStage": "pipeline_proof"
     }
   ]
 }
