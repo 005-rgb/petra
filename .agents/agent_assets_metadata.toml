@@ -1,0 +1,16 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "Tvc837jtM5yJckPDLIlP2"
+uri = "file://docs/roadmap-rush-rider-jakarta.docx"
+type = "word_document"
+title = "Roadmap Pembangunan RUSH RIDER: JAKARTA"
+description = "Roadmap produksi lengkap berdasarkan PRD: milestone, durasi, dependensi, scope MVP, 10 level campaign, QA, risiko, metrik, dan kriteria release candidate."
+logical_id = "357eb27d-c3fb-4aa4-9cbe-f3b621e1f49c"
+content_hash = "sha256:bee46c270b191989fd68719011ebcd740de80269d99e1692b94f48a370219e34"
+size = 51403
+mtime_ms = 1788784387972
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:e2058c4f-8797-4833-bf2a-3e820647d24f/357eb27d-c3fb-4aa4-9cbe-f3b621e1f49c/b83c681f-c5d2-4c9f-9b41-c6fadc530073"
+storage_version_token = "1788784414177813"
+content_type = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"

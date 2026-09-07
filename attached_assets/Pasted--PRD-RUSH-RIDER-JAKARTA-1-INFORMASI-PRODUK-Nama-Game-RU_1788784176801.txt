@@ -1,0 +1,2424 @@
+# PRD — RUSH RIDER: JAKARTA
+
+## 1. INFORMASI PRODUK
+
+**Nama Game:** RUSH RIDER: JAKARTA
+**Genre:** Isometric Motorcycle Endless Runner + Delivery + Traffic Survival
+**Platform:** Android, iOS, PC/Web
+**Target:** Casual sampai Midcore
+**Visual Style:** Hyper-Realistic Cinematic
+**Setting:** Jakarta, Indonesia
+**Mode:** Level Campaign + Endless Mode
+**Perspective:** Isometric 3/4
+**Target Performance:** 60 FPS, minimum 30 FPS pada perangkat target
+
+> CATATAN LEGAL:
+> Jangan menggunakan nama, logo, seragam, branding, atau aset Gojek/Grab secara langsung tanpa lisensi. Gunakan brand fiktif/orisinal untuk game komersial.
+
+---
+
+# 2. HIGH CONCEPT
+
+RUSH RIDER: JAKARTA adalah game motor delivery dengan perspektif isometrik di mana pemain berperan sebagai pengemudi ojek online yang harus mengantarkan pelanggan secepat mungkin melewati kemacetan Jakarta yang ekstrem.
+
+Pemain harus:
+
+* menerima order;
+* menuju lokasi pickup;
+* mengambil pelanggan/order;
+* melewati kemacetan;
+* menghindari kendaraan;
+* melewati persimpangan;
+* menghindari pedestrian;
+* melewati jalan rusak;
+* menghadapi hujan;
+* melewati genangan;
+* menghadapi banjir;
+* mengambil shortcut;
+* menghindari kendaraan yang berpindah jalur;
+* menghadapi NPC dengan perilaku tidak terduga;
+* mencapai tujuan sebelum waktu habis.
+
+CORE FANTASY:
+
+> "Bagaimana rasanya menjadi driver ojek online yang harus mengejar order di tengah kekacauan Jakarta?"
+
+---
+
+# 3. CORE GAME LOOP
+
+LOGIN
+↓
+MAIN MENU
+↓
+GARAGE
+↓
+PILIH CHARACTER
+↓
+PILIH MOTOR
+↓
+PILIH LEVEL
+↓
+TERIMA ORDER
+↓
+PICKUP
+↓
+RUSH TO DESTINATION
+↓
+HINDARI TRAFFIC
+↓
+HINDARI OBSTACLE
+↓
+AMBIL SHORTCUT
+↓
+DELIVER ORDER
+↓
+REWARD
+↓
+XP
+↓
+UPGRADE MOTOR
+↓
+UNLOCK CHARACTER / COSMETIC
+↓
+LEVEL BERIKUTNYA
+
+---
+
+# 4. DESIGN PRINCIPLES
+
+Game harus memenuhi 5 prinsip utama:
+
+1. Mudah dimainkan.
+2. Sulit dikuasai.
+3. Selalu terasa adil.
+4. Setiap level memperkenalkan mechanic baru.
+5. Visual sangat realistis tetapi gameplay tetap fun dan absurd.
+
+Formula pengalaman:
+
+HYPER-REALISTIC VISUAL
++
+REALISTIC JAKARTA
++
+ABSURD TRAFFIC BEHAVIOR
++
+FAST GAMEPLAY
++
+COMEDY
++
+TIME PRESSURE
+
+---
+
+# 5. CAMERA SYSTEM
+
+## Camera
+
+Gunakan kamera isometric 3/4.
+
+Target angle:
+
+35–45 derajat.
+
+Player berada sekitar 35–45% dari bagian bawah layar.
+
+Camera mengikuti player dengan smooth damping.
+
+## Camera Features
+
+* Smooth Follow
+* Dynamic Zoom
+* Dynamic FOV
+* Camera Shake
+* Collision Shake
+* Near Miss Shake
+* Boost Camera
+* Crash Camera
+* Delivery Cinematic
+
+Saat BOOST:
+
+* camera sedikit zoom out;
+* FOV meningkat;
+* motion effect meningkat.
+
+Saat NEAR MISS:
+
+* camera shake ringan;
+* slow-motion 0.1–0.2 detik;
+* audio emphasis.
+
+---
+
+# 6. PLAYER CHARACTERS
+
+## CHARACTER 01 — ARYA
+
+Gender: Male
+Age: ±27
+Role: Starter Driver
+
+Personality:
+
+Santai, fokus, cepat mengambil keputusan.
+
+Stats:
+
+Speed Modifier: 0%
+Handling Modifier: 0%
+Acceleration Modifier: 0%
+Reward Modifier: 0%
+
+Ability:
+
+FOCUS MODE
+
+Effect:
+
+Traffic di sekitar player melambat 30% selama 3 detik.
+
+Unlock:
+
+Default.
+
+---
+
+## CHARACTER 02 — RAKA
+
+Gender: Male
+Age: ±40
+Role: Experienced Driver
+
+Personality:
+
+Berpengalaman dan tenang.
+
+Passive:
+
+TRAFFIC SENSE
+
+Handling +5%.
+
+Unlock:
+
+Level 4.
+
+---
+
+## CHARACTER 03 — SINTA
+
+Gender: Female
+Age: ±25
+Role: Agile Driver
+
+Passive:
+
+AGILE RIDER
+
+Handling +8%.
+
+Unlock:
+
+Level 6.
+
+---
+
+## CHARACTER 04 — BIMO
+
+Gender: Male
+Age: ±45
+Role: Veteran Driver
+
+Passive:
+
+HARDENED RIDER
+
+Collision damage -10%.
+
+Unlock:
+
+Level 8.
+
+---
+
+## CHARACTER 05 — MAYA
+
+Gender: Female
+Age: ±30
+Role: Premium Driver
+
+Passive:
+
+PREMIUM DELIVERY
+
+Reward +20%.
+
+Unlock:
+
+Level 10.
+
+---
+
+# 7. CHARACTER VISUAL STANDARD
+
+Semua karakter harus menggunakan visual hyper-realistic.
+
+Target:
+
+* realistic Indonesian facial proportions;
+* realistic skin;
+* realistic eyes;
+* realistic hair;
+* realistic clothing;
+* realistic helmet;
+* realistic body proportions;
+* realistic fabric;
+* realistic wrinkles;
+* physically based materials.
+
+Karakter tidak boleh terlihat seperti kartun.
+
+---
+
+# 8. CHARACTER ANIMATION
+
+Minimal animation:
+
+* Idle
+* Start Engine
+* Accelerate
+* Brake
+* Turn Left
+* Turn Right
+* Lean Left
+* Lean Right
+* Jump
+* Landing
+* Collision
+* Crash
+* Recovery
+* Look Left
+* Look Right
+* Receive Order
+* Pickup Order
+* Delivery
+* Celebration
+
+---
+
+# 9. MOTORCYCLE SYSTEM
+
+Setiap motor mempunyai statistik:
+
+* Speed
+* Acceleration
+* Handling
+* Brake
+* Stability
+* Boost
+
+---
+
+# 10. MOTOR 01 — CITY 125
+
+Starter motorcycle.
+
+Speed: 60
+Acceleration: 60
+Handling: 80
+Brake: 70
+Stability: 70
+Boost: 60
+
+---
+
+# 11. MOTOR 02 — CITY 150
+
+Unlock Level 3.
+
+Speed: 70
+Acceleration: 75
+Handling: 75
+Brake: 75
+Stability: 75
+Boost: 70
+
+---
+
+# 12. MOTOR 03 — STREET 160
+
+Unlock Level 5.
+
+Speed: 80
+Acceleration: 80
+Handling: 85
+Brake: 80
+Stability: 80
+Boost: 80
+
+---
+
+# 13. MOTOR 04 — SPORT 175
+
+Unlock Level 7.
+
+Speed: 90
+Acceleration: 90
+Handling: 90
+Brake: 90
+Stability: 85
+Boost: 90
+
+---
+
+# 14. MOTOR 05 — HYPER RIDER
+
+Unlock Level 10.
+
+Speed: 100
+Acceleration: 100
+Handling: 95
+Brake: 95
+Stability: 90
+Boost: 100
+
+---
+
+# 15. MOTOR UPGRADE
+
+Setiap motor dapat di-upgrade:
+
+ENGINE
+BRAKE
+TIRE
+SUSPENSION
+BOOST
+
+Setiap component mempunyai level:
+
+Level 1–10.
+
+Upgrade meningkatkan statistik secara bertahap.
+
+---
+
+# 16. PLAYER CONTROL
+
+## Mobile
+
+Swipe Left:
+
+Pindah jalur kiri.
+
+Swipe Right:
+
+Pindah jalur kanan.
+
+Swipe Up:
+
+Jump.
+
+Swipe Down:
+
+Brake / Slide.
+
+Hold:
+
+Boost.
+
+Tap:
+
+Horn.
+
+## PC
+
+A / Left Arrow:
+
+Move Left.
+
+D / Right Arrow:
+
+Move Right.
+
+W / Up Arrow:
+
+Jump.
+
+S / Down Arrow:
+
+Brake.
+
+Space:
+
+Boost.
+
+H:
+
+Horn.
+
+---
+
+# 17. DELIVERY SYSTEM
+
+Setiap gameplay dimulai dengan order.
+
+Contoh:
+
+ORDER #1024
+
+Pickup:
+Warung
+
+Destination:
+Apartment
+
+Distance:
+1.2 KM
+
+Time Limit:
+82 Seconds
+
+Reward:
+Rp12.500 virtual currency
+
+---
+
+# 18. ORDER TYPES
+
+## NORMAL
+
+Reward ×1.
+
+## PRIORITY
+
+Reward ×1.5.
+
+## EXPRESS
+
+Reward ×2.
+
+## VIP
+
+Reward ×3.
+
+Semakin tinggi reward, semakin tinggi risiko dan difficulty.
+
+---
+
+# 19. MISSION SYSTEM
+
+Setiap level mempunyai:
+
+PRIMARY OBJECTIVE
+
+dan
+
+SECONDARY OBJECTIVES.
+
+Contoh:
+
+PRIMARY:
+
+Deliver Order.
+
+SECONDARY:
+
+* No Crash.
+* 3 Near Miss.
+* Use Shortcut.
+* Finish under target time.
+
+---
+
+# 20. STAR SYSTEM
+
+Setiap level mempunyai 3 stars.
+
+1 STAR:
+
+Berhasil menyelesaikan level.
+
+2 STARS:
+
+Menyelesaikan level lebih cepat dari target.
+
+3 STARS:
+
+* No Crash.
+* Target Time tercapai.
+* Secondary Objective selesai.
+
+---
+
+# 21. LEVEL CAMPAIGN
+
+Game harus mempunyai tepat 10 level utama.
+
+Difficulty harus meningkat dari paling mudah hingga paling sulit.
+
+---
+
+# LEVEL 1 — PAGI SANTAI
+
+Difficulty: 1/10
+
+Setting:
+
+Pagi hari di jalan lingkungan Jakarta.
+
+Traffic:
+
+Low.
+
+Weather:
+
+Sunny.
+
+Obstacles:
+
+* Motor
+* Mobil
+* Cone
+* Speed bump
+
+Tujuan:
+
+Deliver 1 order.
+
+Target Time:
+
+90 detik.
+
+Mechanic:
+
+Tutorial movement.
+
+Player belajar:
+
+* steering;
+* brake;
+* jump;
+* boost;
+* delivery.
+
+Reward:
+
+Rp10.000 virtual currency.
+
+Unlock:
+
+Basic Helmet.
+
+---
+
+# LEVEL 2 — MULAI MACET
+
+Difficulty: 2/10
+
+Setting:
+
+Jalan utama.
+
+Traffic:
+
+Medium.
+
+Obstacles:
+
+* Motor
+* Mobil
+* Bus
+* Pedestrian
+* Kendaraan berpindah jalur
+
+Mechanic baru:
+
+NEAR MISS.
+
+Near Miss memberikan:
+
++100 Score.
+
+3 Near Miss berturut-turut:
+
+Combo ×2.
+
+---
+
+# LEVEL 3 — PULANG SEKOLAH
+
+Difficulty: 3/10
+
+Setting:
+
+Area sekolah dan jalan utama.
+
+Traffic:
+
+Medium-High.
+
+NPC:
+
+* Motor
+* Mobil
+* Angkot
+* Anak sekolah
+* Pedestrian
+
+Mechanic baru:
+
+RANDOM TURN.
+
+NPC dapat:
+
+* lurus;
+* belok kiri;
+* belok kanan;
+* berhenti;
+* pindah jalur.
+
+Tujuan:
+
+Deliver 1 order.
+
+Target Time:
+
+80 detik.
+
+---
+
+# LEVEL 4 — HUJAN JAKARTA
+
+Difficulty: 4/10
+
+Weather:
+
+Heavy Rain.
+
+Effect:
+
+Visibility -20%.
+
+Road Friction -10%.
+
+Handling -10%.
+
+Hazards:
+
+* genangan;
+* jalan licin;
+* kendaraan berhenti;
+* air hujan;
+* pedestrian dengan payung.
+
+Mechanic:
+
+WET ROAD.
+
+Jika terlalu cepat saat berbelok:
+
+motor lebih mudah kehilangan kontrol.
+
+Unlock:
+
+Character Raka.
+
+---
+
+# LEVEL 5 — BANJIR
+
+Difficulty: 5/10
+
+Setting:
+
+Jakarta setelah hujan deras.
+
+Water Level:
+
+5–30 cm.
+
+Hazards:
+
+* genangan;
+* mobil mogok;
+* motor mogok;
+* jalan berlubang;
+* debris.
+
+Mechanic:
+
+FLOOD ROUTE.
+
+Player harus memilih:
+
+SAFE ROUTE
+
+atau
+
+FLOOD SHORTCUT.
+
+Safe Route:
+
+Lebih lambat.
+
+Flood Shortcut:
+
+Lebih cepat tetapi lebih berisiko.
+
+Jika melewati air terlalu dalam:
+
+Speed -30%.
+
+Handling -20%.
+
+---
+
+# LEVEL 6 — UNPREDICTABLE TURN
+
+Difficulty: 6/10
+
+NPC khusus:
+
+UNPREDICTABLE TURN DRIVER.
+
+Perilaku:
+
+* memberikan indikator kiri;
+* tetapi dapat bergerak lurus;
+* atau belok kanan;
+* dapat mengerem tiba-tiba.
+
+Tujuan desain:
+
+Membuat gameplay lucu tetapi tetap fair.
+
+NPC harus memberikan telegraph sebelum melakukan perubahan arah.
+
+AI tidak boleh melakukan gerakan mustahil tanpa warning.
+
+Unlock:
+
+Character Sinta.
+
+---
+
+# LEVEL 7 — OFFICE RUSH HOUR
+
+Difficulty: 7/10
+
+Time:
+
+17:00–19:00.
+
+Traffic:
+
+Very High.
+
+Vehicle:
+
+* Motor
+* Mobil
+* Bus
+* Taxi
+* Truck
+* Public Transport
+
+Mechanic:
+
+TRAFFIC WAVE.
+
+Traffic datang dalam kelompok.
+
+Contoh:
+
+GROUP A:
+
+Car
+Car
+Motor
+Bus
+
+PLAYER
+
+GROUP B:
+
+Motor
+Motor
+Car
+Truck
+Car
+
+Player harus mencari celah.
+
+Target Time:
+
+120 detik.
+
+---
+
+# LEVEL 8 — JAKARTA NIGHT
+
+Difficulty: 8/10
+
+Setting:
+
+Jakarta malam hari.
+
+Visual:
+
+* street light;
+* building light;
+* vehicle headlights;
+* neon;
+* wet road reflection.
+
+Visibility:
+
+-30%.
+
+Hazards:
+
+* blind spot;
+* kendaraan keluar gang;
+* pedestrian;
+* parkir liar;
+* persimpangan.
+
+Mechanic:
+
+LOW VISIBILITY.
+
+Player harus membaca lampu kendaraan dan minimap.
+
+Unlock:
+
+Character Bimo.
+
+---
+
+# LEVEL 9 — JAKARTA CHAOS
+
+Difficulty: 9/10
+
+Semua mechanic digabung.
+
+Active:
+
+* Traffic High
+* Rain
+* Flood
+* Random Turn
+* Pedestrian
+* Road Damage
+* Traffic Wave
+* Low Visibility
+
+Mission:
+
+Deliver 3 orders.
+
+Time:
+
+180 detik.
+
+Requirement:
+
+Minimal 2 dari 3 deliveries berhasil.
+
+Bonus:
+
+No Crash.
+
+---
+
+# LEVEL 10 — RUSH HOUR: HELL
+
+Difficulty: 10/10.
+
+FINAL LEVEL.
+
+Semua mechanic aktif.
+
+---
+
+## PHASE 1
+
+Normal traffic.
+
+Duration:
+
+20 seconds.
+
+---
+
+## PHASE 2
+
+Heavy traffic.
+
+Duration:
+
+20 seconds.
+
+---
+
+## PHASE 3
+
+Heavy Rain.
+
+Duration:
+
+20 seconds.
+
+---
+
+## PHASE 4
+
+Flood.
+
+Duration:
+
+20 seconds.
+
+---
+
+## PHASE 5
+
+Night.
+
+Duration:
+
+20 seconds.
+
+---
+
+## PHASE 6
+
+Maximum Traffic.
+
+Duration:
+
+20 seconds.
+
+---
+
+## FINAL DELIVERY
+
+Player harus mencapai tujuan.
+
+Time Limit:
+
+120 seconds.
+
+Final 30 seconds:
+
+Traffic Density ×2
+
+Rain Intensity ×2
+
+Visibility -40%
+
+Speed Requirement ×1.5
+
+Camera Shake meningkat.
+
+Music masuk Critical Mode.
+
+Unlock:
+
+Character Maya.
+
+Unlock:
+
+HYPER RIDER.
+
+---
+
+# 22. TRAFFIC AI
+
+Traffic tidak boleh hanya bergerak lurus.
+
+Gunakan State Machine.
+
+States:
+
+IDLE
+ACCELERATE
+CRUISE
+BRAKE
+CHANGE_LANE
+TURN_LEFT
+TURN_RIGHT
+STOP
+RECOVER
+PANIC
+
+---
+
+# 23. TRAFFIC PERSONALITY
+
+## NORMAL
+
+Predictable.
+
+## AGGRESSIVE
+
+Sering berpindah jalur.
+
+## CAUTIOUS
+
+Sering mengerem.
+
+## RANDOM
+
+Perilaku lebih tidak terduga.
+
+## PANIC
+
+Brake mendadak ketika menghadapi hazard.
+
+---
+
+# 24. SPECIAL NPC AI
+
+UNPREDICTABLE TURN AI.
+
+State:
+
+DRIVE
+
+↓
+
+SIGNAL
+
+↓
+
+CHECK TRAFFIC
+
+↓
+
+DECISION
+
+↓
+
+TURN / STRAIGHT
+
+↓
+
+RECOVER
+
+AI harus mempunyai reaction delay.
+
+Tidak boleh langsung berbelok tanpa telegraph.
+
+---
+
+# 25. PEDESTRIAN AI
+
+States:
+
+WAIT
+WALK
+CROSS
+STOP
+RUN
+TURN
+
+Pedestrian tidak boleh muncul langsung di depan player.
+
+Minimal warning:
+
+0.5–1.5 detik.
+
+---
+
+# 26. PROCEDURAL ROAD SYSTEM
+
+Gunakan modular road segments.
+
+Contoh:
+
+STRAIGHT_01
+STRAIGHT_02
+INTERSECTION_01
+INTERSECTION_02
+ALLEY_01
+MARKET_01
+BRIDGE_01
+FLYOVER_01
+FLOOD_01
+NIGHT_01
+
+Road Generator menyusun segment secara procedural.
+
+---
+
+# 27. PROCEDURAL GENERATION
+
+Pipeline:
+
+ROAD SEGMENT GENERATOR
+↓
+TRAFFIC GENERATOR
+↓
+OBSTACLE GENERATOR
+↓
+NPC GENERATOR
+↓
+WEATHER SYSTEM
+↓
+DIFFICULTY SYSTEM
+↓
+FAIRNESS VALIDATOR
+↓
+PLAYABLE LEVEL
+
+---
+
+# 28. FAIRNESS VALIDATOR
+
+Sebelum segment digunakan:
+
+Check:
+
+* apakah ada minimal satu jalur aman?
+* apakah obstacle terlalu dekat?
+* apakah reaction time cukup?
+* apakah player dapat menghindari obstacle?
+* apakah shortcut memiliki risiko yang sesuai?
+
+Jika:
+
+NO SAFE PATH
+
+maka:
+
+REGENERATE SEGMENT.
+
+---
+
+# 29. REACTION TIME
+
+Obstacle ringan:
+
+Minimum reaction time:
+
+0.6 detik.
+
+Obstacle berat:
+
+Minimum reaction time:
+
+1.0 detik.
+
+Obstacle kombinasi:
+
+Minimum reaction time:
+
+1.5 detik.
+
+---
+
+# 30. COMBO SYSTEM
+
+Score berasal dari:
+
+* Near Miss
+* Jump
+* Overtake
+* Perfect Turn
+* Shortcut
+* Perfect Delivery
+* No Crash
+
+Contoh:
+
+NEAR MISS
++100
+
+NEAR MISS
++100
+
+JUMP
++200
+
+PERFECT TURN
++300
+
+COMBO ×4
+
+---
+
+# 31. BOOST SYSTEM
+
+Boost meter diperoleh dari:
+
+* near miss;
+* combo;
+* perfect turn;
+* collecting boost item.
+
+Boost:
+
++speed.
+
+Boost duration:
+
+2–5 detik tergantung upgrade.
+
+Saat boost:
+
+* camera zoom;
+* FOV meningkat;
+* motion blur ringan;
+* engine sound meningkat;
+* exhaust VFX aktif.
+
+---
+
+# 32. DAMAGE SYSTEM
+
+Motor mempunyai HP.
+
+Minor Collision:
+
+-5 HP.
+
+Medium Collision:
+
+-15 HP.
+
+Major Collision:
+
+-30 HP.
+
+Critical Collision:
+
+-50 HP.
+
+Jika:
+
+HP <= 0
+
+maka:
+
+CRASH.
+
+---
+
+# 33. CRASH SYSTEM
+
+Saat crash:
+
+* player terlempar secara terkontrol;
+* motorcycle jatuh;
+* camera shake;
+* particle;
+* audio impact;
+* screen effect.
+
+Setelah crash:
+
+RESTART
+
+atau
+
+REVIVE jika fitur tersebut aktif.
+
+---
+
+# 34. WEATHER SYSTEM
+
+Weather:
+
+1. Sunny
+2. Cloudy
+3. Rain
+4. Heavy Rain
+5. Storm
+
+Weather mempengaruhi:
+
+* visibility;
+* traffic behavior;
+* road friction;
+* water;
+* lighting;
+* audio;
+* VFX.
+
+---
+
+# 35. DAY/NIGHT SYSTEM
+
+Time states:
+
+Morning
+Afternoon
+Evening
+Night
+
+Night memiliki:
+
+* headlights;
+* street lights;
+* building lights;
+* reflections;
+* neon;
+* dark shadows.
+
+---
+
+# 36. ENVIRONMENT
+
+Environment harus terasa seperti Jakarta.
+
+Assets:
+
+* jalan raya;
+* gang;
+* warung;
+* minimarket;
+* rumah;
+* apartemen;
+* gedung kantor;
+* pasar;
+* sekolah;
+* SPBU;
+* halte;
+* flyover;
+* underpass;
+* lampu merah;
+* trotoar;
+* kabel listrik;
+* billboard;
+* pedagang kaki lima;
+* kendaraan parkir.
+
+---
+
+# 37. VEHICLE ASSETS
+
+Minimal:
+
+* scooter;
+* motorcycle;
+* sedan;
+* MPV;
+* SUV;
+* taxi;
+* bus;
+* truck;
+* delivery van;
+* public transport.
+
+Semua kendaraan harus memiliki:
+
+* LOD;
+* PBR material;
+* realistic lighting;
+* realistic reflections;
+* brake light;
+* headlights.
+
+---
+
+# 38. HYPER-REALISTIC ASSET STANDARD
+
+Target:
+
+PBR.
+
+Texture:
+
+2K–4K untuk hero assets.
+
+Hero character:
+
+High detail.
+
+Hero motorcycle:
+
+High detail.
+
+Environment:
+
+Optimized LOD.
+
+Pipeline:
+
+HIGH POLY
+↓
+RETAPOLOGY
+↓
+UV
+↓
+TEXTURE
+↓
+PBR
+↓
+RIG
+↓
+ANIMATION
+↓
+LOD
+↓
+ENGINE
+
+---
+
+# 39. WATER SYSTEM
+
+Water effects:
+
+* splash;
+* droplets;
+* wake;
+* reflection;
+* ripple;
+* tire displacement;
+* mist.
+
+Saat motor melewati genangan:
+
+WHEEL
+↓
+WATER DISPLACEMENT
+↓
+SPLASH
+↓
+DROPLETS
+↓
+RIPPLE
+
+---
+
+# 40. AUDIO SYSTEM
+
+Environment audio:
+
+* motor;
+* mobil;
+* bus;
+* truck;
+* horn;
+* rain;
+* thunder;
+* water;
+* pedestrian;
+* siren;
+* city ambience.
+
+Dynamic audio:
+
+NORMAL
+↓
+RUSH
+↓
+CRITICAL
+
+Critical:
+
+* heartbeat;
+* warning pulse;
+* intensified engine sound;
+* intensified music.
+
+---
+
+# 41. MUSIC SYSTEM
+
+Music bersifat dynamic.
+
+Normal:
+
+110 BPM.
+
+Rush:
+
+125 BPM.
+
+Critical:
+
+140 BPM.
+
+Music intensity meningkat berdasarkan:
+
+* speed;
+* traffic;
+* timer;
+* weather;
+* danger.
+
+---
+
+# 42. UI HUD
+
+HUD minimal:
+
+HP
+
+TIMER
+
+DISTANCE
+
+MINIMAP
+
+BOOST
+
+COMBO
+
+REWARD
+
+Contoh:
+
+HP 82%
+
+TIME 00:47
+
+DISTANCE 620M
+
+COMBO ×8
+
+BOOST ███████░░
+
+REWARD Rp18.500
+
+---
+
+# 43. MINI MAP
+
+Mini-map menampilkan:
+
+* player;
+* destination;
+* road;
+* shortcut;
+* danger;
+* major intersection.
+
+Mini-map tidak boleh menutupi gameplay.
+
+---
+
+# 44. MAIN MENU
+
+MENU:
+
+PLAY
+GARAGE
+CHARACTERS
+MOTORCYCLES
+MISSIONS
+LEADERBOARD
+SETTINGS
+ACHIEVEMENTS
+
+---
+
+# 45. GARAGE
+
+GARAGE menampilkan:
+
+Character
+
+Motorcycle
+
+Stats
+
+Upgrade
+
+Cosmetic
+
+Contoh:
+
+SPEED ███████░░░
+
+ACCELERATION ██████░░░░
+
+HANDLING ████████░░
+
+BRAKE ███████░░░
+
+BOOST █████░░░░░
+
+---
+
+# 46. COSMETIC SYSTEM
+
+Cosmetic:
+
+* helmet;
+* jacket;
+* pants;
+* shoes;
+* motorcycle skin;
+* delivery box;
+* wheels;
+* exhaust;
+* stickers.
+
+Gunakan desain original.
+
+---
+
+# 47. ECONOMY
+
+Currency:
+
+CASH
+
+DIGITAL PREMIUM CURRENCY
+
+Cash digunakan untuk:
+
+* upgrade;
+* motorcycle;
+* cosmetic.
+
+Premium currency digunakan untuk:
+
+* premium cosmetic;
+* special cosmetic;
+* optional revive.
+
+Untuk MVP:
+
+Gunakan virtual currency tanpa real-money payment.
+
+---
+
+# 48. XP SYSTEM
+
+XP diperoleh dari:
+
+* completing mission;
+* delivery;
+* near miss;
+* combo;
+* secondary mission;
+* level completion.
+
+XP menentukan:
+
+Player Level.
+
+---
+
+# 49. PLAYER PROGRESSION
+
+LEVEL 1
+
+↓
+LEVEL 2
+
+↓
+LEVEL 3
+
+↓
+LEVEL 4
+
+↓
+LEVEL 5
+
+↓
+LEVEL 6
+
+↓
+LEVEL 7
+
+↓
+LEVEL 8
+
+↓
+LEVEL 9
+
+↓
+LEVEL 10
+
+Setelah Level 10:
+
+ENDLESS MODE.
+
+---
+
+# 50. ENDLESS MODE
+
+Setelah Campaign selesai, pemain membuka Endless Mode.
+
+Map dibuat procedural.
+
+Difficulty terus meningkat berdasarkan jarak.
+
+Distance:
+
+0–500m:
+
+Difficulty ×1.0
+
+500–1000m:
+
+Difficulty ×1.2
+
+1–2km:
+
+Difficulty ×1.5
+
+2–3km:
+
+Difficulty ×2.0
+
+3–5km:
+
+Difficulty ×3.0
+
+5km+:
+
+EXTREME.
+
+---
+
+# 51. LEADERBOARD
+
+Leaderboard:
+
+DAILY
+WEEKLY
+GLOBAL
+
+Score:
+
+DISTANCE
+×
+COMBO
+×
+DIFFICULTY
+
+Leaderboard harus memiliki anti-cheat validation untuk mode online.
+
+---
+
+# 52. SAVE SYSTEM
+
+Data yang disimpan:
+
+* player level;
+* XP;
+* currency;
+* unlocked characters;
+* unlocked motorcycles;
+* motorcycle upgrades;
+* cosmetics;
+* completed levels;
+* stars;
+* achievements;
+* settings.
+
+---
+
+# 53. DATA MODEL
+
+## PLAYER
+
+player_id
+level
+xp
+currency
+premium_currency
+selected_character
+selected_motorcycle
+
+## CHARACTER
+
+character_id
+name
+speed_modifier
+handling_modifier
+damage_modifier
+reward_modifier
+ability
+
+## MOTORCYCLE
+
+motorcycle_id
+speed
+acceleration
+handling
+brake
+stability
+boost
+
+## LEVEL
+
+level_id
+difficulty
+weather
+time_of_day
+traffic_density
+traffic_aggression
+target_time
+reward
+
+## MISSION
+
+mission_id
+level_id
+mission_type
+target
+reward
+
+---
+
+# 54. GAME ARCHITECTURE
+
+GameManager
+
+├── PlayerSystem
+│   ├── Character
+│   ├── Motorcycle
+│   └── Input
+
+├── TrafficSystem
+│   ├── TrafficSpawner
+│   ├── TrafficAI
+│   └── PedestrianAI
+
+├── RoadSystem
+│   ├── RoadGenerator
+│   └── SegmentManager
+
+├── MissionSystem
+
+├── LevelSystem
+
+├── WeatherSystem
+
+├── EconomySystem
+
+├── UpgradeSystem
+
+├── AudioSystem
+
+├── VFXSystem
+
+├── UIManager
+
+└── SaveSystem
+
+---
+
+# 55. RECOMMENDED ENGINE
+
+Untuk mobile-first:
+
+UNITY.
+
+Recommended:
+
+* Unity;
+* URP;
+* Cinemachine;
+* Input System;
+* Addressables;
+* Object Pooling.
+
+Untuk PC/console dengan target visual lebih tinggi:
+
+UNREAL ENGINE 5.
+
+Technology:
+
+* Nanite;
+* Lumen;
+* Niagara;
+* Chaos;
+* MetaHuman.
+
+Untuk MVP mobile:
+
+UNITY lebih direkomendasikan.
+
+---
+
+# 56. PERFORMANCE
+
+Target:
+
+60 FPS.
+
+Minimum:
+
+30 FPS.
+
+Target:
+
+mid-range Android.
+
+Optimizations:
+
+* LOD;
+* object pooling;
+* occlusion culling;
+* GPU instancing;
+* texture compression;
+* addressable assets;
+* asynchronous loading;
+* dynamic quality;
+* object streaming.
+
+---
+
+# 57. OBJECT POOLING
+
+Traffic:
+
+TrafficPool.
+
+Obstacles:
+
+ObstaclePool.
+
+Particles:
+
+ParticlePool.
+
+Jangan menggunakan:
+
+Instantiate → Destroy → Instantiate → Destroy
+
+secara terus menerus selama gameplay.
+
+Gunakan reusable objects.
+
+---
+
+# 58. ROAD STREAMING
+
+Jangan load seluruh Jakarta sekaligus.
+
+Gunakan:
+
+CURRENT SEGMENT
++
+NEXT SEGMENTS
++
+PREVIOUS SEGMENT
+
+Segment lama di-unload atau dikembalikan ke pool.
+
+---
+
+# 59. MVP
+
+MVP pertama hanya membutuhkan:
+
+1 Character.
+
+1 Motorcycle.
+
+1 Environment.
+
+1 Weather.
+
+1 Road System.
+
+1 Traffic AI.
+
+1 Mission.
+
+1 Level.
+
+Basic UI.
+
+Basic Audio.
+
+Basic Save.
+
+Tujuan MVP:
+
+Membuktikan bahwa gameplay terasa menyenangkan.
+
+---
+
+# 60. DEVELOPMENT PHASE 1 — PROTOTYPE
+
+Target:
+
+7–14 hari.
+
+Deliverables:
+
+* player movement;
+* motorcycle;
+* isometric camera;
+* road;
+* traffic;
+* collision;
+* basic timer;
+* basic delivery;
+* restart.
+
+Belum perlu hyper-realistic assets.
+
+Gunakan placeholder.
+
+---
+
+# 61. DEVELOPMENT PHASE 2 — VERTICAL SLICE
+
+Target:
+
+2–4 minggu.
+
+Buat Level 1 dengan kualitas hampir final.
+
+Harus sudah mempunyai:
+
+* final character;
+* final motorcycle;
+* Jakarta environment;
+* traffic;
+* UI;
+* audio;
+* VFX;
+* weather;
+* mission;
+* reward.
+
+Jika vertical slice sudah terasa seperti game final, lanjut ke production.
+
+---
+
+# 62. DEVELOPMENT PHASE 3 — FULL CONTENT
+
+Produksi:
+
+10 level.
+
+Setiap level harus mempunyai:
+
+* unique environment;
+* unique challenge;
+* difficulty increase;
+* new mechanic;
+* new traffic behavior;
+* new reward.
+
+---
+
+# 63. DEVELOPMENT PHASE 4 — POLISH
+
+Meliputi:
+
+* animation polish;
+* camera polish;
+* VFX;
+* sound design;
+* optimization;
+* UI polish;
+* balancing;
+* bug fixing;
+* loading optimization.
+
+---
+
+# 64. QA
+
+Gameplay test:
+
+* player movement;
+* collision;
+* traffic;
+* pedestrian;
+* mission;
+* timer;
+* reward;
+* save;
+* restart.
+
+AI test:
+
+* lane switching;
+* turning;
+* braking;
+* pedestrian crossing;
+* random behavior.
+
+Fairness test:
+
+* safe route;
+* reaction time;
+* obstacle spacing;
+* shortcut balance.
+
+Performance test:
+
+* FPS;
+* RAM;
+* GPU;
+* loading;
+* battery;
+* thermal.
+
+---
+
+# 65. ACCEPTANCE CRITERIA MVP
+
+MVP dianggap berhasil jika:
+
+1. Player dapat mengendalikan motor dengan stabil.
+2. Camera mengikuti player dengan smooth.
+3. Traffic dapat bergerak secara dinamis.
+4. Collision bekerja.
+5. Mission dapat dimulai.
+6. Mission dapat diselesaikan.
+7. Timer bekerja.
+8. Reward diberikan.
+9. Progress tersimpan.
+10. Restart bekerja.
+11. Tidak terdapat impossible obstacle.
+12. Game berjalan minimal 30 FPS pada device target.
+13. Level dapat dimainkan berulang kali tanpa terasa identik.
+
+---
+
+# 66. QUALITY TARGET
+
+CHARACTER:
+
+9/10 realism.
+
+MOTORCYCLE:
+
+9/10 realism.
+
+ENVIRONMENT:
+
+8/10 realism.
+
+TRAFFIC:
+
+8/10 realism.
+
+WATER:
+
+8/10 realism.
+
+ANIMATION:
+
+8/10 realism.
+
+AUDIO:
+
+8/10 immersion.
+
+GAMEPLAY:
+
+9/10 fun.
+
+---
+
+# 67. UNIQUE SELLING POINT
+
+Jangan memasarkan game hanya sebagai:
+
+"Endless runner motor."
+
+Positioning:
+
+"THE MOST CHAOTIC MOTORCYCLE DELIVERY GAME IN JAKARTA."
+
+Tagline:
+
+> RIDE FAST. DELIVER FASTER. SURVIVE JAKARTA.
+
+Core enemy:
+
+BUKAN MONSTER.
+
+BUKAN ZOMBIE.
+
+BUKAN ALIEN.
+
+MUSUH UTAMA:
+
+MACET.
+
+---
+
+# 68. FINAL GAME FORMULA
+
+HYPER-REALISTIC JAKARTA
+
+*
+
+REALISTIC MOTORCYCLE
+
+*
+
+TRAFFIC AI
+
+*
+
+UNPREDICTABLE NPC
+
+*
+
+DELIVERY MISSION
+
+*
+
+TIME PRESSURE
+
+*
+
+WEATHER
+
+*
+
+FLOOD
+
+*
+
+COMBO
+
+*
+
+UPGRADE
+
+*
+
+10 LEVEL
+
+*
+
+ENDLESS MODE
+
+=
+
+RUSH RIDER: JAKARTA
+
+---
+
+# 69. MASTER PRODUCTION STRUCTURE
+
+RUSH RIDER: JAKARTA
+
+├── 01_GAME_DESIGN
+│   ├── Core Gameplay
+│   ├── Level Design
+│   ├── Difficulty
+│   ├── Economy
+│   └── Progression
+│
+├── 02_CHARACTERS
+│   ├── Arya
+│   ├── Raka
+│   ├── Sinta
+│   ├── Bimo
+│   └── Maya
+│
+├── 03_VEHICLES
+│   ├── City 125
+│   ├── City 150
+│   ├── Street 160
+│   ├── Sport 175
+│   └── Hyper Rider
+│
+├── 04_ENVIRONMENT
+│   ├── Jakarta Road
+│   ├── Alley
+│   ├── School
+│   ├── Market
+│   ├── Flyover
+│   ├── Flood
+│   └── Night City
+│
+├── 05_AI
+│   ├── Traffic AI
+│   ├── Pedestrian AI
+│   └── Special NPC AI
+│
+├── 06_GAMEPLAY
+│   ├── Delivery
+│   ├── Mission
+│   ├── Collision
+│   ├── Combo
+│   └── Boost
+│
+├── 07_UI
+│
+├── 08_AUDIO
+│
+├── 09_VFX
+│
+├── 10_SAVE
+│
+├── 11_OPTIMIZATION
+│
+└── 12_QA
+
+```
+
+# 70. DEVELOPMENT PRIORITY
+
+PRIORITY 1:
+
+Gameplay.
+
+PRIORITY 2:
+
+Traffic AI.
+
+PRIORITY 3:
+
+Level generation.
+
+PRIORITY 4:
+
+Mission system.
+
+PRIORITY 5:
+
+Progression.
+
+PRIORITY 6:
+
+Visual quality.
+
+PRIORITY 7:
+
+Audio/VFX.
+
+PRIORITY 8:
+
+Monetization.
+
+Jangan membangun monetization sebelum core gameplay terbukti menyenangkan.
+
+---
+
+# 71. GOLDEN RULE
+
+Setiap kali menambahkan mechanic baru, game harus tetap memenuhi:
+
+FUN > COMPLEXITY
+
+FAIRNESS > RANDOMNESS
+
+GAMEPLAY > GRAPHICS
+
+IMMERSION > UI CLUTTER
+
+PLAYER SKILL > PURE LUCK
+
+Difficulty harus membuat pemain berkata:
+
+> "Gila, susah banget. Coba sekali lagi."
+
+Bukan:
+
+> "Game-nya curang."
+
+END OF PRD
+```
