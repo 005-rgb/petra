@@ -8,8 +8,14 @@
       name="description"
       content="RUSH RIDER: JAKARTA — prototype gameplay delivery motorcycle runner."
     />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Rush Rider" />
     <title>RUSH RIDER: JAKARTA — Prototype</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/icon-192.svg" />
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
@@ -88,6 +94,10 @@
             <button class="primary-button" id="start-button" type="button">
               <span>MULAI RIDE</span><b>→</b>
             </button>
+            <button class="install-button" id="install-button" type="button" hidden>
+              <span>INSTALL APP</span><b>↓</b>
+            </button>
+            <p class="install-help" id="install-help" hidden></p>
             <div class="control-hint">
               <span><kbd>←</kbd><kbd>→</kbd> lane</span>
               <span><kbd>↑</kbd> jump</span>

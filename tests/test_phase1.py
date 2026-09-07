@@ -10,6 +10,8 @@ HTML = (ROOT / "public/index.html").read_text(encoding="utf-8")
 JS = (ROOT / "public/game.js").read_text(encoding="utf-8")
 CSS = (ROOT / "public/styles.css").read_text(encoding="utf-8")
 SERVER = (ROOT / "main.py").read_text(encoding="utf-8")
+MANIFEST = (ROOT / "public/manifest.webmanifest").read_text(encoding="utf-8")
+SW = (ROOT / "public/sw.js").read_text(encoding="utf-8")
 
 
 def require(text, pattern, label):
@@ -73,6 +75,21 @@ class Phase1PrototypeTests(unittest.TestCase):
     require(JS, r"touchstart", "touch input")
     require(JS, r"keydown", "keyboard input")
     require(CSS, r"@media \(max-width: 760px\)", "mobile layout")
+
+  def test_installable_pwa_contract(self):
+    for pattern, label in [
+      (r'"display":\s*"standalone"', "standalone display"),
+      (r'"start_url":\s*"/"', "PWA start URL"),
+      (r"icon-192\.svg", "PWA icon"),
+    ]:
+      require(MANIFEST, pattern, label)
+    for pattern, label in [
+      (r"beforeinstallprompt", "browser install prompt"),
+      (r"serviceWorker\.register\(\"/sw\.js\"\)", "service worker registration"),
+      (r"APP TERINSTALL", "install confirmation"),
+    ]:
+      require(JS, pattern, label)
+    require(SW, r"caches\.open", "offline app shell cache")
 
 
 if __name__ == "__main__":

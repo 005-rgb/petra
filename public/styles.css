@@ -170,6 +170,15 @@ h2 em { color: var(--teal); font-style: normal; }
 }
 .primary-button:hover { transform: translateY(-2px); background: #6ee3d1; box-shadow: 0 14px 34px rgba(67,212,194,.25); }
 .primary-button b { font-size: 23px; line-height: 12px; }
+.install-button {
+  display: flex; justify-content: space-between; align-items: center; width: min(370px, 100%);
+  margin-top: 9px; padding: 11px 16px 11px 20px; border: 1px solid rgba(67,212,194,.45);
+  border-radius: 10px; background: rgba(5, 30, 32, .74); color: var(--teal);
+  font: 800 12px var(--display); letter-spacing: .11em; cursor: pointer;
+}
+.install-button:hover { background: rgba(67,212,194,.12); }
+.install-button b { font-size: 20px; line-height: 12px; }
+.install-help { width: min(370px, 100%); margin: 8px 0 0; color: var(--yellow); font: 10px/1.4 var(--mono); }
 .control-hint { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 20px; color: var(--muted); font: 9px var(--mono); }
 kbd { display: inline-grid; place-items: center; min-width: 21px; height: 19px; margin-right: 3px; border: 1px solid rgba(215,234,225,.25); border-radius: 4px; color: var(--ink); font: 9px var(--mono); }
 

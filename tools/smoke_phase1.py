@@ -48,6 +48,10 @@ try:
         "/game.js": ("text/javascript", b"function beginRun"),
         "/favicon.svg": ("image/svg+xml", b"<svg"),
         "/favicon.ico": ("image/svg+xml", b"<svg"),
+        "/manifest.webmanifest": ("", b'"short_name"'),
+        "/sw.js": ("text/javascript", b"RUSH RIDER"),
+        "/icon-192.svg": ("image/svg+xml", b"<svg"),
+        "/icon-512.svg": ("image/svg+xml", b"<svg"),
     }
     for path, (expected_type, marker) in checks.items():
         status, content_type, body = fetch(path)

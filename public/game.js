@@ -34,6 +34,8 @@
     resultNearMiss: document.getElementById("result-near-miss"),
     resultStars: document.getElementById("result-stars"),
     resultReward: document.getElementById("result-reward"),
+     installButton: document.getElementById("install-button"),
+     installHelp: document.getElementById("install-help"),
   };
 
   const CONFIG = {
@@ -158,6 +160,44 @@
   const progress = loadProgress();
   let viewport = { width: 0, height: 0, dpr: 1 };
   let touchStart = null;
+  let deferredInstallPrompt = null;
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+
+  function isInstalled() {
+    return window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
+  }
+
+  function updateInstallUI() {
+    if (!ui.installButton || !ui.installHelp || isInstalled()) {
+      if (ui.installButton) ui.installButton.hidden = true;
+      if (ui.installHelp) ui.installHelp.hidden = true;
+      return;
+    }
+    if (deferredInstallPrompt) {
+      ui.installButton.hidden = false;
+      ui.installHelp.hidden = true;
+      return;
+    }
+    if (isIOS) {
+      ui.installButton.querySelector("span").textContent = "CARA INSTALL";
+    }
+    ui.installButton.hidden = false;
+    ui.installHelp.hidden = true;
+  }
+
+  window.addEventListener("beforeinstallprompt", (event) => {
+    event.preventDefault();
+    deferredInstallPrompt = event;
+    updateInstallUI();
+  });
+  window.addEventListener("appinstalled", () => {
+    deferredInstallPrompt = null;
+    updateInstallUI();
+    showToast("APP TERINSTALL");
+  });
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => navigator.serviceWorker.register("/sw.js").catch(() => {}));
+  }
   const audio = {
     context: null,
     engine: null,
@@ -816,11 +856,28 @@
   ui.startButton.addEventListener("click", beginRun);
   ui.restartButton.addEventListener("click", beginRun);
   ui.pauseButton.addEventListener("click", togglePause);
+  ui.installButton.addEventListener("click", async () => {
+    if (deferredInstallPrompt) {
+      deferredInstallPrompt.prompt();
+      await deferredInstallPrompt.userChoice;
+      deferredInstallPrompt = null;
+      updateInstallUI();
+      return;
+    }
+    if (isIOS) {
+      ui.installHelp.hidden = false;
+      ui.installHelp.textContent = "Tekan Share lalu pilih “Add to Home Screen”.";
+      return;
+    }
+    ui.installHelp.hidden = false;
+    ui.installHelp.textContent = "Buka menu browser ⋮ lalu pilih “Install app” atau “Add to Home screen”.";
+  });
 
   resize();
   resetWorld();
   ui.missionCard.hidden = true;
   ui.hud.hidden = true;
   ui.mapCard.hidden = true;
+  updateInstallUI();
   render();
 })();
