@@ -1,0 +1,1 @@
+- [Addendum evidence gates](addendum-evidence-gates.md) — keep Android readiness blocked until real Unity, APK, and physical-device evidence exists.

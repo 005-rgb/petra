@@ -1,0 +1,40 @@
+{
+  "project": "RUSH RIDER: JAKARTA",
+  "schemaVersion": 1,
+  "status": "BOOTSTRAP_IN_PROGRESS",
+  "editor": {
+    "product": "Unity",
+    "channel": "LTS",
+    "exactVersion": null,
+    "locked": false,
+    "changeRecord": null
+  },
+  "rendering": {
+    "pipeline": "URP",
+    "colorSpace": "Linear",
+    "referenceRenderScale": 1.0,
+    "cameraPitchDegrees": 40
+  },
+  "input": {
+    "package": "com.unity.inputsystem",
+    "keyboardAndTouchShareAbstraction": true
+  },
+  "android": {
+    "developmentBuildRequired": true,
+    "applicationIdentifier": "com.rushriderjakarta.prototype",
+    "versionCode": 1,
+    "targetArchitectures": [
+      "ARM64"
+    ],
+    "orientation": "LandscapeLeft",
+    "signing": "debug-only",
+    "sdkVersion": null,
+    "ndkVersion": null,
+    "jdkVersion": null
+  },
+  "policy": {
+    "freezeEditorDuringPrototype": true,
+    "unknownVersionsAreBlockers": true,
+    "neverClaimAndroidReadyWithoutBuildEvidence": true
+  }
+}

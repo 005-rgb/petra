@@ -54,3 +54,22 @@ The Unity, Android, physical-device profiling, and 3D asset pipeline addendum is
 available in [`docs/roadmap-adendum-unity-android-asset-pipeline.docx`](docs/roadmap-adendum-unity-android-asset-pipeline.docx)
 and its editable source at
 [`docs/roadmap-adendum-unity-android-asset-pipeline.md`](docs/roadmap-adendum-unity-android-asset-pipeline.md).
+
+## Addendum execution pack
+
+The repository now includes the executable foundation for the addendum:
+
+- Unity runtime bootstrap sources and scene templates under [`unity/`](unity/);
+- locked device, performance, project, capture, and asset registry configuration
+  under [`config/addendum/`](config/addendum/);
+- three original low-poly proof assets with collision and LOD meshes under
+  [`assets/proof/`](assets/proof/);
+- repository and strict evidence gates:
+  `python tools/validate_addendum.py` and
+  `python tools/validate_addendum.py --strict`;
+- physical capture recorder at `python tools/profile_capture.py`.
+
+The strict gate intentionally remains blocked until an approved Unity patch,
+Android toolchain, APK builds, and real floor/target device captures are
+provided. See [`docs/phase-1/addendum-execution.md`](docs/phase-1/addendum-execution.md)
+for the exact handoff sequence and status.

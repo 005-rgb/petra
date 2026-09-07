@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "requiredFields": [
+    "captureName",
+    "milestone",
+    "build",
+    "deviceTier",
+    "deviceModel",
+    "osVersion",
+    "gpuDriver",
+    "refreshRateHz",
+    "freeStorageGb",
+    "scenario",
+    "date",
+    "metrics"
+  ],
+  "metricFields": [
+    "averageFps",
+    "onePercentLowFps",
+    "frameTimeMs",
+    "mainThreadMs",
+    "renderThreadMs",
+    "gpuTimeMs",
+    "memoryMb",
+    "loadingMs",
+    "batteryDrainPercent",
+    "skinTemperatureC",
+    "inputLatencyMs",
+    "crashOrHang",
+    "objectCountBeforeRestart",
+    "objectCountAfterRestart"
+  ]
+}

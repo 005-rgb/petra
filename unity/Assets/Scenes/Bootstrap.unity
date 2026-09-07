@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!29 &1
+SceneSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_EnableLighting: 1
+  m_EnableRealtimeGI: 0
+  m_VisualEnvironment: {fileID: 0}
+--- !u!1 &1000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_Name: Bootstrap
+  m_IsActive: 1
+  m_Component:
+  - component: {fileID: 1001}
+  - component: {fileID: 1002}
+  m_Layer: 0
+--- !u!4 &1001
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1000}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+--- !u!114 &1002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1000}
+  m_Enabled: 1
+  m_Script: {fileID: 11500000, guid: 9d673f36e9a343838b3f0eece8f7a7d3, type: 3}
+  m_Name: 

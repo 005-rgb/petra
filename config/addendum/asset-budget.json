@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "units": "runtime",
+  "classes": {
+    "environment": {
+      "maxTriangles": 1500,
+      "maxTextureDimension": 2048,
+      "requiredLodLevels": 2,
+      "maxRuntimeBytes": 262144
+    },
+    "vehicle": {
+      "maxTriangles": 4000,
+      "maxTextureDimension": 2048,
+      "requiredLodLevels": 3,
+      "maxRuntimeBytes": 524288
+    },
+    "character": {
+      "maxTriangles": 6000,
+      "maxTextureDimension": 2048,
+      "requiredLodLevels": 3,
+      "maxRuntimeBytes": 786432
+    }
+  },
+  "global": {
+    "fourKTexturesAllowed": false,
+    "collisionMustUseProxy": true,
+    "sourceMeshExcludedFromRuntime": true,
+    "unapprovedShaderVariantsAllowed": false
+  }
+}

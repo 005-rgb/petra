@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "project": "RUSH RIDER: JAKARTA",
+  "assets": [
+    {
+      "assetId": "ENV_WARUNG_PROP_PROTO_v001",
+      "class": "environment",
+      "role": "proof",
+      "runtimePath": "assets/proof/ENV_WARUNG_PROP_PROTO_v001/ENV_WARUNG_PROP_PROTO_v001.obj",
+      "collisionProxyPath": "assets/proof/ENV_WARUNG_PROP_PROTO_v001/ENV_WARUNG_PROP_PROTO_v001_collision.obj",
+      "lodPaths": [
+        "assets/proof/ENV_WARUNG_PROP_PROTO_v001/ENV_WARUNG_PROP_PROTO_v001_lod1.obj"
+      ],
+      "creator": "RUSH RIDER in-house procedural blockout",
+      "sourceReference": "original geometry generated for this repository",
+      "licenseType": "原创 / original work",
+      "commercialUsePermitted": true,
+      "attributionRequired": false,
+      "modificationPermitted": true,
+      "dateAcquired": "2026-09-07",
+      "reviewer": "Engineering",
+      "androidProfileStatus": "not_captured"
+    },
+    {
+      "assetId": "VEH_CITY125_PROTO_v001",
+      "class": "vehicle",
+      "role": "proof",
+      "runtimePath": "assets/proof/VEH_CITY125_PROTO_v001/VEH_CITY125_PROTO_v001.obj",
+      "collisionProxyPath": "assets/proof/VEH_CITY125_PROTO_v001/VEH_CITY125_PROTO_v001_collision.obj",
+      "lodPaths": [
+        "assets/proof/VEH_CITY125_PROTO_v001/VEH_CITY125_PROTO_v001_lod1.obj",
+        "assets/proof/VEH_CITY125_PROTO_v001/VEH_CITY125_PROTO_v001_lod2.obj"
+      ],
+      "creator": "RUSH RIDER in-house procedural blockout",
+      "sourceReference": "original geometry generated for this repository",
+      "licenseType": "original work",
+      "commercialUsePermitted": true,
+      "attributionRequired": false,
+      "modificationPermitted": true,
+      "dateAcquired": "2026-09-07",
+      "reviewer": "Engineering",
+      "androidProfileStatus": "not_captured"
+    },
+    {
+      "assetId": "CHR_ARYA_BLOCKOUT_PROTO_v001",
+      "class": "character",
+      "role": "proof",
+      "runtimePath": "assets/proof/CHR_ARYA_BLOCKOUT_PROTO_v001/CHR_ARYA_BLOCKOUT_PROTO_v001.obj",
+      "collisionProxyPath": "assets/proof/CHR_ARYA_BLOCKOUT_PROTO_v001/CHR_ARYA_BLOCKOUT_PROTO_v001_collision.obj",
+      "lodPaths": [
+        "assets/proof/CHR_ARYA_BLOCKOUT_PROTO_v001/CHR_ARYA_BLOCKOUT_PROTO_v001_lod1.obj",
+        "assets/proof/CHR_ARYA_BLOCKOUT_PROTO_v001/CHR_ARYA_BLOCKOUT_PROTO_v001_lod2.obj"
+      ],
+      "creator": "RUSH RIDER in-house procedural blockout",
+      "sourceReference": "original geometry generated for this repository",
+      "licenseType": "original work",
+      "commercialUsePermitted": true,
+      "attributionRequired": false,
+      "modificationPermitted": true,
+      "dateAcquired": "2026-09-07",
+      "reviewer": "Engineering",
+      "androidProfileStatus": "not_captured"
+    }
+  ]
+}

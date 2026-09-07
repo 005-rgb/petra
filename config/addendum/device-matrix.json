@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "project": "RUSH RIDER: JAKARTA",
+  "captureNaming": "<milestone>-<build>-<device>-<scenario>-<date>",
+  "tiers": {
+    "floor": {
+      "required": true,
+      "memoryGb": 4,
+      "socClass": "Snapdragon 660 / Helio G80 class",
+      "targetFps": 30,
+      "maxFrameTimeMs": 33.3,
+      "maxManagedNativeMemoryMb": 600,
+      "maxDrawCalls": 100
+    },
+    "target": {
+      "required": true,
+      "memoryGb": 6,
+      "socClass": "Snapdragon 778G / Dimensity 900 class",
+      "targetFps": 60,
+      "maxFrameTimeMs": 16.67,
+      "maxManagedNativeMemoryMb": 600,
+      "maxDrawCalls": 150
+    },
+    "high": {
+      "required": false,
+      "memoryGb": 8,
+      "socClass": "Snapdragon 8-series / Dimensity 8-series class",
+      "targetFps": 60,
+      "maxFrameTimeMs": 16.67,
+      "maxManagedNativeMemoryMb": 750,
+      "maxDrawCalls": 200
+    }
+  },
+  "scenarios": [
+    "cold-launch-menu",
+    "route90",
+    "traffic-peak",
+    "restart20",
+    "pause-resume",
+    "background-foreground",
+    "thermal10m",
+    "save-load",
+    "low-battery"
+  ],
+  "requiredMetrics": [
+    "averageFps",
+    "onePercentLowFps",
+    "frameTimeMs",
+    "mainThreadMs",
+    "renderThreadMs",
+    "gpuTimeMs",
+    "memoryMb",
+    "loadingMs",
+    "batteryDrainPercent",
+    "skinTemperatureC",
+    "inputLatencyMs",
+    "crashOrHang",
+    "objectCountBeforeRestart",
+    "objectCountAfterRestart"
+  ],
+  "gates": {
+    "P0": [
+      "crashOrHang",
+      "floorBelow30Fps"
+    ],
+    "P1": [
+      "repeatedFrameSpike",
+      "memoryLeak",
+      "loadingHitch",
+      "repeatedInputLoss"
+    ],
+    "P2": [
+      "visualQualityRegressionWithoutPlayabilityImpact"
+    ]
+  }
+}

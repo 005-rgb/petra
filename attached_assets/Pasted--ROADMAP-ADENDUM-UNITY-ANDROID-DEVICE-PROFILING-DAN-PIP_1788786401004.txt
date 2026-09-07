@@ -1,0 +1,622 @@
+# ROADMAP ADENDUM
+## UNITY, ANDROID, DEVICE PROFILING, DAN PIPELINE ASSET 3D
+
+**Project:** RUSH RIDER: JAKARTA  
+**Versi:** 1.0  
+**Tanggal:** 7 September 2026  
+**Relasi:** Addendum terhadap `docs/roadmap-rush-rider-jakarta.md`  
+**Status:** Ready for execution
+
+---
+
+## 1. Tujuan Adendum
+
+Addendum ini mengatur pekerjaan teknis yang diperlukan agar game dapat berpindah dari browser gameplay baseline ke project Unity mobile-first yang dapat dibuild, diuji pada perangkat fisik, dan menerima asset 3D production-ready.
+
+Addendum ini menjawab empat kebutuhan:
+
+1. Kapan dan bagaimana project Unity dibuat.
+2. Kapan Android development build harus tersedia.
+3. Kapan profiling perangkat fisik dimulai dan bagaimana dilakukan.
+4. Kapan pipeline asset 3D dibangun, diuji, dan digunakan untuk produksi.
+
+Addendum ini **tidak menggantikan** scope, control-feel, device budget, greybox, risk register, atau backlog pada Fase 0. Ia menambahkan jalur teknis yang wajib berjalan sebelum Vertical Slice.
+
+## Keputusan utama
+
+> Unity, Android build, profiling fisik, dan asset pipeline dimulai sebelum Fase 2 / Vertical Slice.  
+> Fase 2 menggunakan fondasi tersebut untuk menghasilkan satu level dengan kualitas hampir final.
+
+---
+
+## 2. Pemetaan terhadap Roadmap Utama
+
+### 2.1 Pemetaan roadmap internal
+
+| Track adendum | Mulai | Gate wajib | Hasil |
+|---|---|---|---|
+| Unity bootstrap | M0 akhir / M1 minggu 1 | M2 selesai | project Unity + URP dan scene prototype |
+| Android build | M1 minggu 1 | M1 minggu 2 | development APK terpasang |
+| Device profiling | M1 minggu 2 | sebelum M3 | baseline floor dan target device |
+| Asset pipeline proof | M1 minggu 2 | M2 selesai | satu asset melewati pipeline sampai Android |
+| Asset pipeline hardening | M2 | sebelum M3 | pipeline siap untuk asset vertical slice |
+| Asset production | M3 | M3 review | character, motor, dan environment Level 1 |
+| Content asset scale-up | M4 | sebelum campaign lock | asset 10 level |
+| Final optimization | M6 | release candidate | performance dan loading final |
+
+### 2.2 Pemetaan terhadap fase PRD asli
+
+| PRD | Peran addendum |
+|---|---|
+| Fase 1 — Prototype | Unity bootstrap, Android dev build, profiling baseline, asset pipeline proof |
+| Fase 2 — Vertical Slice | production asset Level 1 dan profiling dengan asset final |
+| Fase 3 — Full Content | scale-up pipeline ke 10 level dan seluruh content asset |
+| Fase 4 — Polish | optimasi, compatibility, thermal, loading, dan release candidate |
+
+---
+
+## 3. Target Akhir Addendum
+
+Sebelum Vertical Slice dimulai, tim harus sudah memiliki:
+
+- project Unity + URP yang bisa dibuka dari clean checkout;
+- exact Unity editor patch yang dicatat dan tidak berubah selama prototype;
+- scene `Prototype_Level01`;
+- Android development build;
+- input touch yang tervalidasi;
+- device matrix floor, target, dan high;
+- profiler capture baseline;
+- satu asset character, motorcycle, atau prop yang lolos pipeline penuh;
+- aturan polygon, texture, material, LOD, dan memory;
+- import pipeline Unity yang reproducible;
+- checklist review asset;
+- keputusan fallback jika performance floor gagal.
+
+Yang **belum wajib selesai** sebelum Vertical Slice:
+
+- seluruh 10 level;
+- semua 5 character;
+- semua 5 motorcycle;
+- semua environment final;
+- final weather, flood, night, dan endless mode;
+- monetisasi;
+- leaderboard online;
+- Android release build untuk store.
+
+---
+
+## 4. Workstream A — Unity Bootstrap
+
+**Waktu:** M0 akhir sampai M1 minggu 1  
+**Tujuan:** membuat fondasi engine yang dapat menerima gameplay prototype.
+
+### A1. Editor dan project lock
+
+- pilih Unity LTS yang disetujui tim;
+- catat exact editor patch;
+- gunakan URP;
+- aktifkan Input System;
+- tetapkan Android build support;
+- tetapkan color space dan render scale;
+- tetapkan target architecture yang didukung;
+- jangan melakukan editor upgrade selama prototype tanpa change record.
+
+### A2. Struktur project
+
+Struktur minimum:
+
+```text
+Assets/
+├── Art/
+│   ├── Characters/
+│   ├── Vehicles/
+│   ├── Environment/
+│   ├── Materials/
+│   ├── Textures/
+│   └── VFX/
+├── Audio/
+├── Data/
+├── Gameplay/
+├── Scenes/
+│   ├── Bootstrap/
+│   └── Prototype/
+├── UI/
+├── Tests/
+└── Tools/
+```
+
+### A3. Scene dan system bootstrap
+
+Wajib tersedia:
+
+- `Bootstrap` scene;
+- `Prototype_Level01` scene;
+- GameManager;
+- PlayerSystem;
+- RoadSystem;
+- TrafficSystem;
+- MissionSystem;
+- UIManager;
+- SaveSystem;
+- debug overlay;
+- deterministic reset;
+- development build profile.
+
+### A4. Unity bootstrap acceptance criteria
+
+- clean checkout membuka project tanpa missing package;
+- `Prototype_Level01` dapat dijalankan langsung;
+- camera 3/4 berada pada pitch 40°;
+- input keyboard dan touch memakai abstraction yang sama;
+- scene dapat di-reset tanpa duplicate object;
+- development build Android berhasil dibuat;
+- semua package dan editor version terdokumentasi.
+
+---
+
+## 5. Workstream B — Android Development Build
+
+**Waktu:** M1 minggu 1–2  
+**Tujuan:** memastikan loop prototype dapat berjalan di hardware Android sedini mungkin.
+
+### B1. Build profile
+
+Development build harus memiliki:
+
+- development logging;
+- profiler connection;
+- debug overlay yang dapat dimatikan;
+- stable orientation;
+- touch input;
+- application identifier sementara;
+- version code;
+- build reproducibility;
+- non-release signing untuk internal testing.
+
+### B2. Build ladder
+
+| Build | Isi | Tujuan |
+|---|---|---|
+| Android Build 0 | empty scene + input | membuktikan toolchain |
+| Android Build 1 | player + camera + greybox | menguji kontrol dan framing |
+| Android Build 2 | traffic + collision + timer | menguji loop inti |
+| Android Build 3 | full prototype route | baseline profiling |
+| Android Build 4 | vertical slice content | performance dan quality review |
+
+### B3. Android validation
+
+Setiap build diuji terhadap:
+
+- install;
+- cold launch;
+- touch input;
+- orientation;
+- pause/resume;
+- background/foreground;
+- restart;
+- save/load;
+- uninstall/reinstall;
+- low battery behavior;
+- thermal behavior;
+- screen aspect ratio.
+
+### B4. Android acceptance criteria sebelum Vertical Slice
+
+- Build 3 dapat di-install pada floor dan target device;
+- game dapat dimainkan selama 90 detik;
+- touch swipe dan action buttons tidak kehilangan input;
+- pause/resume tidak merusak state;
+- restart tidak menyebabkan memory/object count terus naik;
+- save/load tidak kehilangan cash, stars, dan completed level;
+- tidak ada crash blocker;
+- FPS floor memenuhi minimal 30 FPS pada route placeholder.
+
+---
+
+## 6. Workstream C — Device Matrix dan Profiling Fisik
+
+**Waktu:** dimulai M1 minggu 2, berlanjut setiap milestone  
+**Tujuan:** mengubah performance budget dokumen menjadi bukti dari perangkat nyata.
+
+### C1. Device tiers
+
+| Tier | Profil minimum | Target |
+|---|---|---|
+| Floor | Android 4 GB RAM, Snapdragon 660/Helio G80 class | minimum 30 FPS |
+| Target | Android 6 GB RAM, Snapdragon 778G/Dimensity 900 class | target 60 FPS |
+| High | Android 8 GB RAM, Snapdragon 8-series/Dimensity 8-series class | 60 FPS dengan visual headroom |
+
+Device aktual, OS, GPU driver, refresh rate, dan free storage harus dicatat di test sheet. “Class” bukan pengganti device nyata.
+
+### C2. Profiling scenarios
+
+Setiap tier menjalankan:
+
+1. cold launch ke menu;
+2. Level 1 route normal 90 detik;
+3. traffic density tertinggi pada prototype;
+4. 20 kali restart;
+5. pause/resume;
+6. background/foreground;
+7. 10 menit continuous run untuk thermal;
+8. save/load;
+9. low battery dan low thermal headroom bila dapat diuji.
+
+### C3. Metrics
+
+- average FPS;
+- 1% low FPS;
+- frame time;
+- main thread;
+- render thread;
+- GPU time;
+- RAM/native memory;
+- loading duration;
+- battery drain;
+- skin temperature;
+- input latency;
+- crash/hang;
+- object count sebelum dan sesudah restart.
+
+### C4. Capture naming
+
+Gunakan format:
+
+```text
+<milestone>-<build>-<device>-<scenario>-<date>
+```
+
+Contoh:
+
+```text
+M1-build-03-floor-route90-2026-09-07
+```
+
+### C5. Profiling gate
+
+| Gate | Kriteria |
+|---|---|
+| P0 | crash, hang, atau <30 FPS pada floor |
+| P1 | spike, memory leak, loading hitch, atau input loss berulang |
+| P2 | visual quality turun tetapi playability tetap aman |
+
+P0 harus selesai sebelum Vertical Slice. P1 harus memiliki owner dan target fix. P2 dapat masuk polish backlog bila tidak mengganggu readability.
+
+### C6. Profiling acceptance criteria
+
+Sebelum M3:
+
+- floor device ≥30 FPS pada route placeholder;
+- target device mendekati 60 FPS;
+- 20 restart tidak menyebabkan memory naik terus;
+- object pool kembali ke baseline;
+- pause/resume dan background/foreground tidak merusak run;
+- cold launch dan restart memiliki angka capture;
+- semua P0 ditutup.
+
+---
+
+## 7. Workstream D — Pipeline Asset 3D
+
+**Waktu:** desain M0, proof M1–M2, produksi M3–M4, optimasi M6  
+**Tujuan:** membuktikan asset dapat dibuat, diimpor, dioptimalkan, dan berjalan di Android.
+
+### D1. Asset classes
+
+#### Hero assets
+
+- Arya;
+- City 125;
+- delivery box;
+- helmet.
+
+#### Environment assets
+
+- road;
+- intersection;
+- warung;
+- rumah;
+- signage orisinal;
+- street props;
+- traffic vehicles.
+
+#### Runtime support assets
+
+- collision proxy;
+- LOD meshes;
+- light probe markers;
+- occlusion data;
+- VFX anchors;
+- animation controllers.
+
+### D2. Pipeline standard
+
+```text
+Reference / Design
+→ High Poly
+→ Retopology
+→ UV
+→ Texture
+→ PBR Material
+→ Rig
+→ Animation
+→ LOD
+→ Collision Proxy
+→ Unity Import
+→ Android Profile
+→ Approval
+```
+
+### D3. Proof asset wajib
+
+Sebelum Vertical Slice, minimal tiga proof asset:
+
+1. satu prop environment;
+2. satu vehicle sederhana;
+3. satu hero candidate atau character blockout.
+
+Minimal satu asset harus melalui seluruh pipeline termasuk Android profiling. Tujuannya bukan visual final, melainkan membuktikan:
+
+- naming;
+- export;
+- material;
+- texture compression;
+- LOD;
+- collision;
+- import;
+- memory;
+- render performance;
+- repeatability.
+
+### D4. Budget awal
+
+Budget awal mengikuti target mobile dan harus disesuaikan dari capture nyata:
+
+- hero texture prototype: maksimal 2K;
+- environment texture prototype: 1K–2K;
+- tidak ada 4K texture sebelum profiling menyetujui;
+- setiap hero asset memiliki minimal 3 LOD level bila jarak kamera membutuhkannya;
+- collision memakai proxy sederhana;
+- material/shader variants dibatasi;
+- exported runtime asset tidak menyertakan source mesh atau unused data;
+- asset gagal budget tidak masuk scene hanya karena terlihat bagus di editor.
+
+### D5. Asset review checklist
+
+Setiap asset harus lolos:
+
+- provenance/legal;
+- naming;
+- scale dan pivot;
+- orientation;
+- UV;
+- material;
+- texture compression;
+- LOD;
+- collision;
+- animation/rig bila diperlukan;
+- mobile memory;
+- Android visual check;
+- missing reference check.
+
+### D6. Asset acceptance criteria sebelum Vertical Slice
+
+- tiga proof asset berhasil diimport dari clean checkout;
+- minimal satu proof asset diuji di Android;
+- LOD switch tidak menghasilkan pop yang mengganggu;
+- texture/material terlihat benar pada target color space;
+- collision proxy tidak memakai mesh mahal;
+- asset record dan license record lengkap;
+- export dapat diulang tanpa langkah manual yang tidak terdokumentasi.
+
+---
+
+## 8. Jadwal Adendum Terintegrasi
+
+### Minggu 0–1 — M0: Keputusan dan setup
+
+- kunci Unity LTS dan exact patch;
+- kunci device matrix;
+- kunci Android identifier sementara;
+- kunci folder dan naming;
+- kunci asset provenance;
+- kunci performance budget;
+- siapkan test sheet.
+
+**Gate:** keputusan tidak ambigu dan semua owner ditunjuk.
+
+### Minggu 2 — M1: Unity bootstrap dan Android Build 0/1
+
+- buat project Unity + URP;
+- buat Bootstrap dan Prototype scene;
+- pasang Input System;
+- build empty scene Android;
+- build player + camera + greybox;
+- uji touch pada floor/target.
+
+**Gate:** Android Build 1 playable dengan player dan camera.
+
+### Minggu 3 — M1: Prototype route dan baseline profiling
+
+- traffic;
+- collision;
+- timer;
+- pickup/delivery;
+- restart/save;
+- Android Build 2/3;
+- capture profiling route 90 detik;
+- proof asset pertama.
+
+**Gate:** loop prototype dan performance baseline tersedia.
+
+### Minggu 4–5 — M2: Technical foundation hardening
+
+- pooling;
+- road streaming;
+- data-driven tuning;
+- deterministic reset;
+- profiler instrumentation;
+- asset import preset;
+- texture compression;
+- LOD;
+- proof asset vehicle dan character;
+- fix P0 performance.
+
+**Gate:** siap menerima production-quality vertical slice content.
+
+### Minggu 6–9 — M3: Vertical Slice
+
+- Arya final;
+- City 125 final;
+- environment Jakarta Level 1;
+- final lighting;
+- UI/audio/VFX;
+- Android Build 4;
+- profiling dengan asset final;
+- manual fairness test;
+- vertical slice review.
+
+**Gate:** satu level terasa seperti game final dan memenuhi device floor.
+
+### M4 — Campaign Production
+
+- produksi asset untuk 10 level;
+- reuse modular asset;
+- batch import;
+- LOD audit;
+- memory budget per level;
+- profiling per content pack.
+
+### M6 — Polish dan Release Candidate
+
+- thermal soak;
+- battery test;
+- loading optimization;
+- shader warm-up;
+- device compatibility;
+- final Android build;
+- store/release compliance.
+
+---
+
+## 9. Dependency Graph
+
+```text
+Unity Version Lock
+        ↓
+Unity + URP Bootstrap
+        ↓
+Android Build 0
+        ↓
+Input + Greybox + Prototype Loop
+        ↓
+Android Build 1/2/3
+        ↓
+Physical Device Baseline
+        ↓
+Asset Pipeline Proof
+        ↓
+Pooling + LOD + Compression + Streaming
+        ↓
+Vertical Slice Assets
+        ↓
+Vertical Slice Profiling
+        ↓
+Full Campaign Content
+        ↓
+Final Optimization + Release Candidate
+```
+
+### Hard blockers
+
+- Android Build 0 belum berhasil: jangan mengklaim mobile-ready.
+- Floor device belum bisa menjalankan route placeholder: jangan memulai asset final massal.
+- Asset proof belum lolos import dan profiling: jangan mengunci produksi 10 level.
+- Unity editor patch berubah di tengah prototype: ulangi baseline profiling.
+- Asset legal/provenance tidak jelas: asset tidak boleh masuk build.
+
+---
+
+## 10. Pembagian Tanggung Jawab
+
+| Workstream | Owner utama | Reviewer |
+|---|---|---|
+| Unity project | Engineering | Producer |
+| Android build | Engineering | QA |
+| Device profiling | QA/Technical Artist | Engineering |
+| Asset pipeline | Technical Artist | Art Lead |
+| Asset legal/provenance | Producer/Art Lead | Legal reviewer |
+| Performance budget | Engineering/Technical Artist | Producer |
+| Vertical slice approval | Design Lead | Semua lead |
+
+Pada tim kecil, satu orang dapat memegang lebih dari satu role, tetapi fungsi review tetap harus dilakukan sebagai pemeriksaan terpisah.
+
+---
+
+## 11. Risiko dan Mitigasi
+
+| Risiko | Indikator awal | Mitigasi |
+|---|---|---|
+| Unity project terlambat | minggu pertama belum ada Build 0 | gunakan scene minimal dan potong package non-esensial |
+| Android toolchain gagal | build editor berhasil tetapi APK gagal | kunci SDK/NDK/JDK dan catat environment |
+| Floor device lambat | <30 FPS placeholder | optimasi pooling/LOD sebelum asset final |
+| Asset terlihat bagus tetapi berat | RAM/GPU spike setelah import | enforce budget dan profiling asset proof |
+| Pipeline terlalu manual | export/import tidak repeatable | buat preset dan checklist import |
+| Texture compression mengubah visual | warna/material tidak konsisten | target-device visual review dan color management |
+| Editor upgrade memecahkan build | package/API berubah | freeze version sampai vertical slice review |
+| Asset legal tidak jelas | source/license record kosong | block asset dan gunakan original replacement |
+
+---
+
+## 12. Definition of Done Addendum
+
+Adendum ini dianggap selesai pada tahap pre-Vertical Slice apabila:
+
+- Unity project tersedia dan dapat dibuka dari clean checkout;
+- Android Build 3 playable;
+- floor dan target device telah menerima profiling baseline;
+- P0 performance issues ditutup;
+- 3 proof asset lolos pipeline;
+- minimal 1 proof asset telah diprofilkan pada Android;
+- asset budgets dan import presets terdokumentasi;
+- device test sheet berisi capture yang dapat direproduksi;
+- vertical slice asset list memiliki owner dan status;
+- seluruh blocker pada dependency graph memiliki keputusan.
+
+Adendum dianggap selesai penuh menjelang release candidate apabila:
+
+- seluruh campaign assets lolos asset review;
+- semua target device utama telah diuji;
+- thermal, battery, loading, dan crash test selesai;
+- final Android build dapat dipasang dan dimainkan;
+- release asset provenance lengkap;
+- tidak ada P0/P1 blocker terbuka.
+
+---
+
+## 13. Keputusan Praktis
+
+Urutan yang harus digunakan:
+
+> **Unity bootstrap → Android Build 0 → prototype loop → physical profiling → asset pipeline proof → technical hardening → vertical slice asset → full content → polish**
+
+Jangan gunakan urutan berikut:
+
+> **Buat semua asset final → baru tes Android**
+
+Urutan tersebut berisiko menghasilkan asset mahal yang tidak memenuhi memory, draw-call, shader, atau thermal budget perangkat target.
+
+## 14. Hubungan dengan Artefak Saat Ini
+
+Dokumen ini menggunakan dan memperluas:
+
+- `docs/roadmap-rush-rider-jakarta.md`;
+- `docs/phase-0/01-scope-lock.md`;
+- `docs/phase-0/02-device-performance.md`;
+- `docs/phase-0/03-control-feel-spec.md`;
+- `docs/phase-0/04-level-1-greybox.md`;
+- `docs/phase-0/07-phase-1-backlog.md`;
+- `docs/phase-1/README.md`;
+- `docs/audit/phase-0-1-audit.md`.
+
+Browser prototype tetap menjadi referensi perilaku sampai Unity prototype memiliki parity pada core loop.
