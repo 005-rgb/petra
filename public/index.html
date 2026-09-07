@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#061218" />
+    <meta
+      name="description"
+      content="RUSH RIDER: JAKARTA — prototype gameplay delivery motorcycle runner."
+    />
+    <title>RUSH RIDER: JAKARTA — Prototype</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="game-stage" aria-label="RUSH RIDER: JAKARTA prototype">
+        <canvas id="game-canvas" aria-label="Area permainan"></canvas>
+
+        <header class="topbar">
+          <div class="brand-lockup">
+            <span class="brand-mark" aria-hidden="true">RR</span>
+            <div>
+              <p class="eyebrow">PROTO / LEVEL 01</p>
+              <h1>RUSH RIDER <span>JAKARTA</span></h1>
+            </div>
+          </div>
+          <button class="icon-button" id="pause-button" type="button" aria-label="Pause" hidden>
+            <span></span><span></span>
+          </button>
+        </header>
+
+        <section class="mission-card" id="mission-card" aria-live="polite">
+          <div class="mission-type"><span class="ping"></span> NORMAL ORDER</div>
+          <div class="mission-route">
+            <span class="route-dot pickup-dot"></span>
+            <div><small>PICKUP</small><strong>WARUNG Pojok</strong></div>
+            <span class="route-line"></span>
+            <span class="route-dot destination-dot"></span>
+            <div><small>DESTINATION</small><strong>APARTEMEN SENJA</strong></div>
+          </div>
+          <div class="mission-stats"><span>Rp10.000</span><span>•</span><span id="order-distance">960 M</span></div>
+        </section>
+
+        <section class="hud" id="hud" hidden>
+          <div class="hud-pill timer-pill">
+            <span class="hud-label">TIME</span>
+            <strong id="timer">01:30</strong>
+          </div>
+          <div class="hud-pill">
+            <span class="hud-label">DISTANCE</span>
+            <strong id="distance">0 M</strong>
+          </div>
+          <div class="hud-pill hp-pill">
+            <span class="hud-label">BIKE HP</span>
+            <div class="meter"><span id="hp-meter"></span></div>
+            <strong id="hp">100%</strong>
+          </div>
+          <div class="hud-pill boost-pill">
+            <span class="hud-label">BOOST</span>
+            <div class="meter boost-meter"><span id="boost-meter"></span></div>
+          </div>
+        </section>
+
+        <div class="status-toast" id="status-toast" aria-live="polite"></div>
+        <div class="combo-badge" id="combo-badge" hidden>COMBO <strong id="combo">x1</strong></div>
+
+        <div class="map-card" id="map-card" hidden>
+          <div class="map-title"><span>ROUTE</span><span id="map-distance">0 / 960 M</span></div>
+          <div class="map-track">
+            <span class="map-progress" id="map-progress"></span>
+            <span class="map-player" id="map-player"></span>
+            <span class="map-destination"></span>
+          </div>
+          <div class="map-labels"><span>START</span><span>DESTINATION</span></div>
+        </div>
+
+        <section class="start-overlay" id="start-overlay">
+          <div class="start-panel">
+            <div class="sunset-line"></div>
+            <p class="kicker">JAKARTA / 07:15 AM</p>
+            <h2>Jalanan sudah<br /><em>menunggu.</em></h2>
+            <p class="start-copy">Ambil order. Potong kemacetan. Antar tepat waktu.</p>
+            <div class="order-preview">
+              <div><span>ORDER #1024</span><strong>Warung → Apartemen</strong></div>
+              <div class="preview-reward">Rp10.000</div>
+            </div>
+            <button class="primary-button" id="start-button" type="button">
+              <span>MULAI RIDE</span><b>→</b>
+            </button>
+            <div class="control-hint">
+              <span><kbd>←</kbd><kbd>→</kbd> lane</span>
+              <span><kbd>↑</kbd> jump</span>
+              <span><kbd>SPACE</kbd> boost</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="result-overlay" id="result-overlay" hidden>
+          <div class="result-panel">
+            <div class="result-icon" id="result-icon">✓</div>
+            <p class="kicker" id="result-kicker">DELIVERY COMPLETE</p>
+            <h2 id="result-title">Order sampai.</h2>
+            <p id="result-copy">Jakarta hari ini belum bisa mengalahkanmu.</p>
+            <div class="result-grid">
+              <div><small>TIME</small><strong id="result-time">00:00</strong></div>
+              <div><small>NEAR MISS</small><strong id="result-near-miss">0</strong></div>
+              <div><small>REWARD</small><strong id="result-reward">Rp10.000</strong></div>
+            </div>
+            <button class="primary-button" id="restart-button" type="button">
+              <span>RIDE LAGI</span><b>↻</b>
+            </button>
+          </div>
+        </section>
+
+        <div class="mobile-controls" id="mobile-controls" hidden>
+          <div class="steer-controls">
+            <button class="control-button" data-action="left" aria-label="Pindah lane kiri">←</button>
+            <button class="control-button" data-action="right" aria-label="Pindah lane kanan">→</button>
+          </div>
+          <div class="action-controls">
+            <button class="control-button small" data-action="horn" aria-label="Klakson">H</button>
+            <button class="control-button small" data-action="jump" aria-label="Lompat">↑</button>
+            <button class="control-button boost-control" data-action="boost" aria-label="Boost">BOOST</button>
+          </div>
+        </div>
+
+        <footer class="bottom-hint" id="bottom-hint">
+          <span><i class="legend-dot yellow"></i> SAFE LANE</span>
+          <span><i class="legend-dot coral"></i> TRAFFIC</span>
+          <span>PHASE 1 / GAMEPLAY PROTOTYPE</span>
+        </footer>
+      </section>
+    </main>
+    <script src="/game.js"></script>
+  </body>
+</html>
