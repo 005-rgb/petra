@@ -49,3 +49,8 @@ The browser prototype is an executable gameplay validation layer while the impor
 repository has no Unity project yet. The Unity implementation can use the same
 locked values and greybox contract from `docs/phase-0/`. The audit and improvement
 record is in [`docs/audit/phase-0-1-audit.md`](docs/audit/phase-0-1-audit.md).
+
+The Unity, Android, physical-device profiling, and 3D asset pipeline addendum is
+available in [`docs/roadmap-adendum-unity-android-asset-pipeline.docx`](docs/roadmap-adendum-unity-android-asset-pipeline.docx)
+and its editable source at
+[`docs/roadmap-adendum-unity-android-asset-pipeline.md`](docs/roadmap-adendum-unity-android-asset-pipeline.md).
